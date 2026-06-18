@@ -1,0 +1,22 @@
+# Maven
+backend/target/
+backend/bin/
+backend/*.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/dev-dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# IDEs and OS
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
