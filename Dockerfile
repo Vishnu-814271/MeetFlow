@@ -22,4 +22,4 @@ WORKDIR /app
 COPY --from=backend-builder /app/backend/target/meetflow-backend-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8081
 # Run with production profile active; PORT is dynamic under Render/Railway
-ENTRYPOINT ["java", "-Dserver.port=${PORT:8081}", "-jar", "app.jar", "--spring.profiles.active=prod"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8081} -jar app.jar --spring.profiles.active=prod"]
