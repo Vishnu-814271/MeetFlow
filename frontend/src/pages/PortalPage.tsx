@@ -332,8 +332,10 @@ const RollingTitle: React.FC<{ text: string }> = ({ text }) => {
 
 // ─── Label helper ─────────────────────────────────────────────────────────────
 const Lbl: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
-                color: 'rgba(100,116,139,0.85)', marginBottom: 6 }}>
+  <div style={{
+    fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+    color: 'rgba(100,116,139,0.85)', marginBottom: 6
+  }}>
     {children}
   </div>
 );
@@ -359,21 +361,21 @@ export const PortalPage: React.FC = () => {
   const [joinCode, setJoinCode] = useState('');
 
   // Create – step 1
-  const [eventName, setEventName]       = useState('');
-  const [description, setDescription]   = useState('');
-  const [venueName, setVenueName]       = useState('');
+  const [eventName, setEventName] = useState('');
+  const [description, setDescription] = useState('');
+  const [venueName, setVenueName] = useState('');
   const [venueAddress, setVenueAddress] = useState('');
   const venueMap = '';
-  const [startDt, setStartDt]           = useState('');
-  const [endDt, setEndDt]               = useState('');
+  const [startDt, setStartDt] = useState('');
+  const [endDt, setEndDt] = useState('');
 
   // Create – step 2
-  const [fullName, setFullName]     = useState('');
-  const [mobile, setMobile]         = useState('');
-  const [email, setEmail]           = useState('');
-  const [batch, setBatch]           = useState('');
-  const [city, setCity]             = useState('Hyderabad');
-  const cities = ['Hyderabad','Bangalore','Chennai','Pune','Delhi','Mumbai','Kolkata','Kochi'];
+  const [fullName, setFullName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [email, setEmail] = useState('');
+  const [batch, setBatch] = useState('');
+  const [city, setCity] = useState('Hyderabad');
+  const cities = ['Hyderabad', 'Bangalore', 'Chennai', 'Pune', 'Delhi', 'Mumbai', 'Kolkata', 'Kochi'];
 
   // Escape key
   useEffect(() => {
@@ -410,11 +412,13 @@ export const PortalPage: React.FC = () => {
     }
     if (!fullName.trim() || !mobile.trim()) { setError('Name and mobile are required.'); return; }
     createMutation.mutate(
-      { event: { eventName, description, venueName, venueAddress, venueGoogleMapUrl: venueMap, startDatetime: startDt, endDatetime: endDt },
-        organizer: { fullName, mobileNumber: mobile, email, batchOrGroup: batch, currentCity: city } },
+      {
+        event: { eventName, description, venueName, venueAddress, venueGoogleMapUrl: venueMap, startDatetime: startDt, endDatetime: endDt },
+        organizer: { fullName, mobileNumber: mobile, email, batchOrGroup: batch, currentCity: city }
+      },
       {
         onSuccess: (d: any) => {
-          confetti({ particleCount: 220, spread: 100, origin: { y: 0.55 }, colors: ['#1d4ed8','#38bdf8','#fff','#93c5fd'] });
+          confetti({ particleCount: 220, spread: 100, origin: { y: 0.55 }, colors: ['#1d4ed8', '#38bdf8', '#fff', '#93c5fd'] });
           localStorage.setItem(`meetflow_user_${d.event.eventSlug}`, JSON.stringify(d.organizer));
           localStorage.setItem('meetflow_last_active_slug', d.event.eventSlug);
           localStorage.setItem('meetflow_last_active_name', d.event.eventName);
@@ -440,70 +444,80 @@ export const PortalPage: React.FC = () => {
       <div className="mfp-root">
 
         {/* Decorative orbs */}
-        <div className="mfp-orb" style={{ '--d':'7s','--dl':'0s', top:'5%', left:'8%', width:280, height:280,
-          background:'radial-gradient(circle,rgba(29,78,216,0.5) 0%,transparent 70%)', filter:'blur(48px)' } as any} />
-        <div className="mfp-orb" style={{ '--d':'9s','--dl':'2s', bottom:'8%', right:'6%', width:340, height:340,
-          background:'radial-gradient(circle,rgba(56,189,248,0.28) 0%,transparent 70%)', filter:'blur(55px)' } as any} />
-        <div className="mfp-orb" style={{ '--d':'11s','--dl':'1.5s', top:'60%', left:'3%', width:200, height:200,
-          background:'radial-gradient(circle,rgba(99,102,241,0.25) 0%,transparent 70%)', filter:'blur(36px)' } as any} />
+        <div className="mfp-orb" style={{
+          '--d': '7s', '--dl': '0s', top: '5%', left: '8%', width: 280, height: 280,
+          background: 'radial-gradient(circle,rgba(29,78,216,0.5) 0%,transparent 70%)', filter: 'blur(48px)'
+        } as any} />
+        <div className="mfp-orb" style={{
+          '--d': '9s', '--dl': '2s', bottom: '8%', right: '6%', width: 340, height: 340,
+          background: 'radial-gradient(circle,rgba(56,189,248,0.28) 0%,transparent 70%)', filter: 'blur(55px)'
+        } as any} />
+        <div className="mfp-orb" style={{
+          '--d': '11s', '--dl': '1.5s', top: '60%', left: '3%', width: 200, height: 200,
+          background: 'radial-gradient(circle,rgba(99,102,241,0.25) 0%,transparent 70%)', filter: 'blur(36px)'
+        } as any} />
 
         {/* Stars */}
-        <div style={{ position:'absolute', inset:0, overflow:'hidden', pointerEvents:'none' }}>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           {Array.from({ length: 65 }).map((_, i) => (
             <div key={i} className="mfp-star" style={{
-              '--d':`${2 + Math.random() * 4}s`,
-              '--dl':`${Math.random() * 6}s`,
-              left:`${Math.random() * 100}%`,
-              top:`${Math.random() * 100}%`,
-              width:`${1 + Math.random() * 2}px`,
-              height:`${1 + Math.random() * 2}px`,
+              '--d': `${2 + Math.random() * 4}s`,
+              '--dl': `${Math.random() * 6}s`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${1 + Math.random() * 2}px`,
+              height: `${1 + Math.random() * 2}px`,
             } as any} />
           ))}
         </div>
 
         {/* ── Centre content ── */}
-        <div style={{ position:'relative', zIndex:10, textAlign:'center', padding:'40px 24px', maxWidth:680, width:'100%' }}>
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '40px 24px', maxWidth: 680, width: '100%' }}>
 
           {/* Badge */}
-          <div className="mfp-badge" style={{ marginBottom:28 }}>
-            <Sparkles style={{ width:12, height:12 }} />
+          <div className="mfp-badge" style={{ marginBottom: 28 }}>
+            <Sparkles style={{ width: 12, height: 12 }} />
             Alumni Network &nbsp;·&nbsp; {year}
           </div>
 
           {/* ── TITLE: visible white text, horizontally rolling ── */}
-          <div style={{ marginBottom:8, fontSize:'clamp(2.2rem,7vw,5rem)', fontWeight:900,
-                        lineHeight:1.05, color:'#ffffff', letterSpacing:'-0.02em' }}>
+          <div style={{
+            marginBottom: 8, fontSize: 'clamp(2.2rem,7vw,5rem)', fontWeight: 900,
+            lineHeight: 1.05, color: '#ffffff', letterSpacing: '-0.02em'
+          }}>
             <RollingTitle text="NLP Alumni Meetup" />
           </div>
 
           {/* ── YEAR: bright shimmer ── */}
           <div className="mfp-year" style={{
-            fontSize:'clamp(1.8rem,5vw,4rem)', fontWeight:900,
-            letterSpacing:'0.1em', marginBottom:20,
+            fontSize: 'clamp(1.8rem,5vw,4rem)', fontWeight: 900,
+            letterSpacing: '0.1em', marginBottom: 20,
           }}>
             {year}
           </div>
 
           {/* Tagline */}
-          <p style={{ fontSize:14, color:'#94a3b8', fontWeight:500, lineHeight:1.7,
-                      marginBottom:48, maxWidth:420, margin:'0 auto 48px' }}>
+          <p style={{
+            fontSize: 14, color: '#94a3b8', fontWeight: 500, lineHeight: 1.7,
+            marginBottom: 48, maxWidth: 420, margin: '0 auto 48px'
+          }}>
             Coordinate travel plans, find carpool partners, and connect with fellow alumni — beautifully.
           </p>
 
           {/* ── BUTTONS ── */}
-          <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
+          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button id="btn-create-meetup" className="mfp-btn mfp-btn-create" onClick={() => open('create')}>
-              <Plus style={{ width:18, height:18 }} strokeWidth={2.5} />
+              <Plus style={{ width: 18, height: 18 }} strokeWidth={2.5} />
               Create Meetup
             </button>
             <button id="btn-join-meetup" className="mfp-btn mfp-btn-join" onClick={() => open('join')}>
-              <LogIn style={{ width:18, height:18 }} strokeWidth={2.5} />
+              <LogIn style={{ width: 18, height: 18 }} strokeWidth={2.5} />
               Join Meetup
             </button>
           </div>
 
-          <p style={{ marginTop:52, fontSize:11, color:'rgba(71,85,105,0.6)', fontWeight:500 }}>
-            Powered by <span style={{ color:'rgba(100,116,139,0.5)' }}>MeetFlow</span>
+          <p style={{ marginTop: 52, fontSize: 11, color: 'rgba(71,85,105,0.6)', fontWeight: 500 }}>
+            Powered by <span style={{ color: 'rgba(100,116,139,0.5)' }}>MeetFlow</span>
           </p>
         </div>
       </div>
@@ -514,70 +528,74 @@ export const PortalPage: React.FC = () => {
           <div className="mfp-modal-card">
 
             {/* Header */}
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
-                          padding:'20px 22px 16px', borderBottom:'1px solid rgba(30,58,138,0.3)' }}>
-              <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-                <div style={{ width:34, height:34, borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center',
-                              background:'rgba(29,78,216,0.3)', border:'1px solid rgba(56,189,248,0.25)' }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '20px 22px 16px', borderBottom: '1px solid rgba(30,58,138,0.3)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{
+                  width: 34, height: 34, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(29,78,216,0.3)', border: '1px solid rgba(56,189,248,0.25)'
+                }}>
                   {modal === 'join'
-                    ? <KeyRound style={{ width:16, height:16, color:'#38bdf8' }} />
-                    : <Plus     style={{ width:16, height:16, color:'#38bdf8' }} />}
+                    ? <KeyRound style={{ width: 16, height: 16, color: '#38bdf8' }} />
+                    : <Plus style={{ width: 16, height: 16, color: '#38bdf8' }} />}
                 </div>
                 <div>
-                  <div style={{ fontSize:14, fontWeight:800, color:'#f1f5f9' }}>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>
                     {modal === 'join' ? 'Join a Meetup' : 'Create a Meetup'}
                   </div>
                   {modal === 'create' && !success &&
-                    <div style={{ fontSize:10, color:'rgba(100,116,139,0.7)', fontWeight:600 }}>Step {step} of 2</div>}
+                    <div style={{ fontSize: 10, color: 'rgba(100,116,139,0.7)', fontWeight: 600 }}>Step {step} of 2</div>}
                 </div>
               </div>
               <button className="mfp-close-btn" onClick={close}>
-                <X style={{ width:15, height:15 }} />
+                <X style={{ width: 15, height: 15 }} />
               </button>
             </div>
 
             {/* Body */}
-            <div style={{ padding:'18px 22px 22px' }}>
+            <div style={{ padding: '18px 22px 22px' }}>
 
               {/* Error */}
               {error && (
                 <div className="mfp-error">
-                  <AlertCircle style={{ width:15, height:15, flexShrink:0, marginTop:1 }} />
+                  <AlertCircle style={{ width: 15, height: 15, flexShrink: 0, marginTop: 1 }} />
                   {error}
                 </div>
               )}
 
               {/* ══ JOIN FORM ══ */}
               {modal === 'join' && (
-                <form onSubmit={handleJoin} style={{ display:'flex', flexDirection:'column', gap:14 }}>
+                <form onSubmit={handleJoin} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   <div>
                     <Lbl>Event Access Code</Lbl>
                     <div className="mfp-iw">
-                      <KeyRound className="mfp-ico" style={{ width:15, height:15 }} />
+                      <KeyRound className="mfp-ico" style={{ width: 15, height: 15 }} />
                       <input type="text" value={joinCode}
-                             onChange={e => setJoinCode(e.target.value.toUpperCase())}
-                             placeholder="e.g. NLP2026" maxLength={10} autoFocus required
-                             className="mfp-input"
-                             style={{ paddingLeft:38, fontFamily:'monospace', letterSpacing:'0.14em', fontSize:15 }} />
+                        onChange={e => setJoinCode(e.target.value.toUpperCase())}
+                        placeholder="e.g. NLP2026" maxLength={10} autoFocus required
+                        className="mfp-input"
+                        style={{ paddingLeft: 38, fontFamily: 'monospace', letterSpacing: '0.14em', fontSize: 15 }} />
                     </div>
-                    <p style={{ fontSize:10, color:'rgba(100,116,139,0.55)', marginTop:5 }}>
+                    <p style={{ fontSize: 10, color: 'rgba(100,116,139,0.55)', marginTop: 5 }}>
                       Get this code from the event organizer.
                     </p>
                   </div>
                   <button type="submit" disabled={lookupMutation.isPending} className="mfp-form-btn-primary">
                     {lookupMutation.isPending
-                      ? <Loader2 style={{ width:16, height:16, animation:'spin 1s linear infinite' }} />
-                      : <><LogIn style={{ width:16, height:16 }} /> Join Event</>}
+                      ? <Loader2 style={{ width: 16, height: 16, animation: 'spin 1s linear infinite' }} />
+                      : <><LogIn style={{ width: 16, height: 16 }} /> Join Event</>}
                   </button>
                 </form>
               )}
 
               {/* ══ CREATE FORM ══ */}
               {modal === 'create' && !success && (
-                <form onSubmit={handleCreate} style={{ display:'flex', flexDirection:'column', gap:12 }}>
+                <form onSubmit={handleCreate} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {/* Step bar */}
-                  <div style={{ display:'flex', gap:6, marginBottom:4 }}>
-                    {[1,2].map(n => (
+                  <div style={{ display: 'flex', gap: 6, marginBottom: 4 }}>
+                    {[1, 2].map(n => (
                       <div key={n} className={`mfp-step ${step >= n ? 'active' : 'inactive'}`} />
                     ))}
                   </div>
@@ -587,101 +605,101 @@ export const PortalPage: React.FC = () => {
                       <div>
                         <Lbl>Event Name *</Lbl>
                         <input type="text" value={eventName} onChange={e => setEventName(e.target.value)}
-                               placeholder="e.g. Summer Reunion 2026" required autoFocus className="mfp-input" />
+                          placeholder="e.g. Summer Reunion 2026" required autoFocus className="mfp-input" />
                       </div>
                       <div>
                         <Lbl>Description</Lbl>
                         <textarea value={description} onChange={e => setDescription(e.target.value)}
-                                  placeholder="What's this meetup about?" rows={2}
-                                  className="mfp-input" style={{ resize:'none' }} />
+                          placeholder="What's this meetup about?" rows={2}
+                          className="mfp-input" style={{ resize: 'none' }} />
                       </div>
                       <div>
                         <Lbl>Venue Name *</Lbl>
                         <div className="mfp-iw">
-                          <MapPin className="mfp-ico" style={{ width:14, height:14 }} />
+                          <MapPin className="mfp-ico" style={{ width: 14, height: 14 }} />
                           <input type="text" value={venueName} onChange={e => setVenueName(e.target.value)}
-                                 placeholder="Hotel / Hall name" required className="mfp-input" style={{ paddingLeft:36 }} />
+                            placeholder="Hotel / Hall name" required className="mfp-input" style={{ paddingLeft: 36 }} />
                         </div>
                       </div>
                       <div>
                         <Lbl>Venue Address</Lbl>
                         <input type="text" value={venueAddress} onChange={e => setVenueAddress(e.target.value)}
-                               placeholder="Full street address" className="mfp-input" />
+                          placeholder="Full street address" className="mfp-input" />
                       </div>
-                      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                         <div>
                           <Lbl>Start *</Lbl>
                           <input type="datetime-local" value={startDt} onChange={e => setStartDt(e.target.value)}
-                                 required className="mfp-input" style={{ colorScheme:'dark', fontSize:11 }} />
+                            required className="mfp-input" style={{ colorScheme: 'dark', fontSize: 11 }} />
                         </div>
                         <div>
                           <Lbl>End *</Lbl>
                           <input type="datetime-local" value={endDt} onChange={e => setEndDt(e.target.value)}
-                                 required className="mfp-input" style={{ colorScheme:'dark', fontSize:11 }} />
+                            required className="mfp-input" style={{ colorScheme: 'dark', fontSize: 11 }} />
                         </div>
                       </div>
                       <button type="submit" className="mfp-form-btn-primary">
-                        Organizer Details <ArrowRight style={{ width:15, height:15 }} />
+                        Organizer Details <ArrowRight style={{ width: 15, height: 15 }} />
                       </button>
                     </>
                   ) : (
                     <>
-                      <p style={{ fontSize:11, color:'rgba(100,116,139,0.65)', marginBottom:2 }}>
+                      <p style={{ fontSize: 11, color: 'rgba(100,116,139,0.65)', marginBottom: 2 }}>
                         You'll be auto-registered as the event organizer.
                       </p>
                       <div>
                         <Lbl>Your Full Name *</Lbl>
                         <div className="mfp-iw">
-                          <User className="mfp-ico" style={{ width:14, height:14 }} />
+                          <User className="mfp-ico" style={{ width: 14, height: 14 }} />
                           <input type="text" value={fullName} onChange={e => setFullName(e.target.value)}
-                                 placeholder="Full name" required autoFocus className="mfp-input" style={{ paddingLeft:36 }} />
+                            placeholder="Full name" required autoFocus className="mfp-input" style={{ paddingLeft: 36 }} />
                         </div>
                       </div>
-                      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                         <div>
                           <Lbl>Mobile *</Lbl>
                           <div className="mfp-iw">
-                            <Phone className="mfp-ico" style={{ width:13, height:13 }} />
+                            <Phone className="mfp-ico" style={{ width: 13, height: 13 }} />
                             <input type="tel" value={mobile} onChange={e => setMobile(e.target.value)}
-                                   placeholder="+91..." required className="mfp-input" style={{ paddingLeft:34, fontSize:12 }} />
+                              placeholder="+91..." required className="mfp-input" style={{ paddingLeft: 34, fontSize: 12 }} />
                           </div>
                         </div>
                         <div>
                           <Lbl>Email</Lbl>
                           <div className="mfp-iw">
-                            <Mail className="mfp-ico" style={{ width:13, height:13 }} />
+                            <Mail className="mfp-ico" style={{ width: 13, height: 13 }} />
                             <input type="email" value={email} onChange={e => setEmail(e.target.value)}
-                                   placeholder="you@..." className="mfp-input" style={{ paddingLeft:34, fontSize:12 }} />
+                              placeholder="you@..." className="mfp-input" style={{ paddingLeft: 34, fontSize: 12 }} />
                           </div>
                         </div>
                       </div>
-                      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                         <div>
                           <Lbl>Batch / Group</Lbl>
                           <div className="mfp-iw">
-                            <Users className="mfp-ico" style={{ width:13, height:13 }} />
+                            <Users className="mfp-ico" style={{ width: 13, height: 13 }} />
                             <input type="text" value={batch} onChange={e => setBatch(e.target.value)}
-                                   placeholder="Batch of 2018" className="mfp-input" style={{ paddingLeft:34, fontSize:12 }} />
+                              placeholder="Batch of 2018" className="mfp-input" style={{ paddingLeft: 34, fontSize: 12 }} />
                           </div>
                         </div>
                         <div>
                           <Lbl>City</Lbl>
                           <select value={city} onChange={e => setCity(e.target.value)}
-                                  className="mfp-input" style={{ fontSize:12 }}>
+                            className="mfp-input" style={{ fontSize: 12 }}>
                             {cities.map(c => <option key={c} value={c}>{c}</option>)}
                           </select>
                         </div>
                       </div>
-                      <div style={{ display:'flex', gap:10, marginTop:4 }}>
+                      <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
                         <button type="button" className="mfp-form-btn-back"
-                                onClick={() => { setStep(1); setError(''); }}>
-                          <ArrowLeft style={{ width:13, height:13 }} /> Back
+                          onClick={() => { setStep(1); setError(''); }}>
+                          <ArrowLeft style={{ width: 13, height: 13 }} /> Back
                         </button>
                         <button type="submit" disabled={createMutation.isPending}
-                                className="mfp-form-btn-primary" style={{ flex:1 }}>
+                          className="mfp-form-btn-primary" style={{ flex: 1 }}>
                           {createMutation.isPending
-                            ? <Loader2 style={{ width:15, height:15, animation:'spin 1s linear infinite' }} />
-                            : <><Sparkles style={{ width:15, height:15 }} /> Create Event</>}
+                            ? <Loader2 style={{ width: 15, height: 15, animation: 'spin 1s linear infinite' }} />
+                            : <><Sparkles style={{ width: 15, height: 15 }} /> Create Event</>}
                         </button>
                       </div>
                     </>
@@ -691,53 +709,57 @@ export const PortalPage: React.FC = () => {
 
               {/* ══ SUCCESS ══ */}
               {modal === 'create' && success && (
-                <div className="mfp-success-wrap" style={{ display:'flex', flexDirection:'column', gap:18, textAlign:'center' }}>
-                  <div style={{ width:60, height:60, margin:'0 auto', borderRadius:'50%',
-                                display:'flex', alignItems:'center', justifyContent:'center',
-                                background:'rgba(16,185,129,0.12)', border:'2px solid rgba(16,185,129,0.35)' }}>
-                    <Sparkles style={{ width:28, height:28, color:'#34d399' }} />
+                <div className="mfp-success-wrap" style={{ display: 'flex', flexDirection: 'column', gap: 18, textAlign: 'center' }}>
+                  <div style={{
+                    width: 60, height: 60, margin: '0 auto', borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    background: 'rgba(16,185,129,0.12)', border: '2px solid rgba(16,185,129,0.35)'
+                  }}>
+                    <Sparkles style={{ width: 28, height: 28, color: '#34d399' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize:18, fontWeight:900, color:'#f1f5f9', marginBottom:4 }}>Event Created! 🎉</div>
-                    <div style={{ fontSize:12, color:'rgba(100,116,139,0.8)' }}>Share the access code with your alumni group.</div>
+                    <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>Event Created! 🎉</div>
+                    <div style={{ fontSize: 12, color: 'rgba(100,116,139,0.8)' }}>Share the access code with your alumni group.</div>
                   </div>
-                  <div className="mfp-info-card" style={{ textAlign:'left' }}>
-                    <div style={{ marginBottom:12 }}>
+                  <div className="mfp-info-card" style={{ textAlign: 'left' }}>
+                    <div style={{ marginBottom: 12 }}>
                       <Lbl>Event</Lbl>
-                      <div style={{ fontSize:14, fontWeight:700, color:'#e2e8f0' }}>{success.name}</div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{success.name}</div>
                     </div>
                     <div className="mfp-divider" />
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom:12 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
                       <div>
                         <Lbl>Access Code</Lbl>
                         <div className="mfp-code-display">{success.code}</div>
                       </div>
                       <div>
                         <Lbl>Event URL</Lbl>
-                        <div style={{ fontSize:11, color:'rgba(100,116,139,0.75)', marginTop:4, wordBreak:'break-all' }}>
+                        <div style={{ fontSize: 11, color: 'rgba(100,116,139,0.75)', marginTop: 4, wordBreak: 'break-all' }}>
                           /event/{success.slug}
                         </div>
                       </div>
                     </div>
                     <div className="mfp-divider" />
                     <Lbl>Shareable Link</Lbl>
-                    <div className="mfp-copy-row" style={{ marginTop:8 }}>
-                      <span style={{ flex:1, fontSize:10, fontFamily:'monospace', color:'rgba(100,116,139,0.7)',
-                                     overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+                    <div className="mfp-copy-row" style={{ marginTop: 8 }}>
+                      <span style={{
+                        flex: 1, fontSize: 10, fontFamily: 'monospace', color: 'rgba(100,116,139,0.7)',
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+                      }}>
                         {`${window.location.origin}/event/${success.slug}/join?code=${success.code}`}
                       </span>
                       <button className="mfp-copy-btn" onClick={copyLink} title="Copy link">
                         {copied
-                          ? <Check style={{ width:13, height:13, color:'#34d399' }} />
-                          : <Copy style={{ width:13, height:13 }} />}
+                          ? <Check style={{ width: 13, height: 13, color: '#34d399' }} />
+                          : <Copy style={{ width: 13, height: 13 }} />}
                       </button>
                     </div>
                   </div>
-                  <div style={{ display:'flex', gap:10 }}>
+                  <div style={{ display: 'flex', gap: 10 }}>
                     <button className="mfp-form-btn-back" onClick={close}>Close</button>
-                    <button className="mfp-form-btn-primary" style={{ flex:1 }}
-                            onClick={() => { close(); navigate(`/event/${success.slug}`); }}>
-                      Go to Dashboard <ArrowRight style={{ width:15, height:15 }} />
+                    <button className="mfp-form-btn-primary" style={{ flex: 1 }}
+                      onClick={() => { close(); navigate(`/event/${success.slug}`); }}>
+                      Go to Dashboard <ArrowRight style={{ width: 15, height: 15 }} />
                     </button>
                   </div>
                 </div>
