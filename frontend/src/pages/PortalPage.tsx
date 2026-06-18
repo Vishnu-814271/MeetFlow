@@ -363,7 +363,7 @@ export const PortalPage: React.FC = () => {
   const [description, setDescription]   = useState('');
   const [venueName, setVenueName]       = useState('');
   const [venueAddress, setVenueAddress] = useState('');
-  const [venueMap, setVenueMap]         = useState('');
+  const venueMap = '';
   const [startDt, setStartDt]           = useState('');
   const [endDt, setEndDt]               = useState('');
 
