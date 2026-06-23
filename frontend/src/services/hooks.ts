@@ -6,6 +6,11 @@ export interface Event {
   id: string;
   eventName: string;
   eventType: string;
+  organizationId?: string;
+  featuresConfig?: string;
+  registrationSchema?: string;
+  rolesSchema?: string;
+  dashboardSchema?: string;
   eventSlug: string;
   eventCode: string;
   description: string;
@@ -34,6 +39,7 @@ export interface Participant {
   showEmail: boolean;
   showTravelDetails: boolean;
   allowContact: boolean;
+  customFieldsData?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -425,6 +431,15 @@ export const useEventByCode = () => {
   return useMutation<Event, Error, string>({
     mutationFn: async (code) => {
       const response = await api.get(`/events/code/${code}`);
+      return response.data;
+    },
+  });
+};
+
+export const useAiGenerateEvent = () => {
+  return useMutation<any, Error, string>({
+    mutationFn: async (prompt) => {
+      const response = await api.post('/events/ai-generate', { prompt });
       return response.data;
     },
   });

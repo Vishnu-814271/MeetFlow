@@ -17,6 +17,7 @@ public record ParticipantDto(
     boolean showEmail,
     boolean showTravelDetails,
     boolean allowContact,
+    String customFieldsData,
     LocalDateTime createdAt,
     LocalDateTime updatedAt
 ) {}

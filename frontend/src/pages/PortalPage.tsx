@@ -5,7 +5,7 @@ import {
   ArrowRight, ArrowLeft, Copy, Check, Loader2, AlertCircle,
   Plus, LogIn, X, Users, MapPin
 } from 'lucide-react';
-import { useCreateEventWithOrganizer, useEventByCode } from '../services/hooks';
+import { useCreateEventWithOrganizer, useEventByCode, useAiGenerateEvent } from '../services/hooks';
 import confetti from 'canvas-confetti';
 
 export const EVENT_TYPE_CONFIGS: Record<string, {
@@ -390,7 +390,34 @@ export const PortalPage: React.FC = () => {
   const navigate = useNavigate();
   const createMutation = useCreateEventWithOrganizer();
   const lookupMutation = useEventByCode();
+  const aiGenerateMutation = useAiGenerateEvent();
   const year = new Date().getFullYear();
+
+  const handleAiGenerate = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!aiPrompt.trim()) {
+      setError('Please describe your event first.');
+      return;
+    }
+    setError('');
+    setAiMessage('AI is designing your event...');
+    aiGenerateMutation.mutate(aiPrompt.trim(), {
+      onSuccess: (data: any) => {
+        setAiMessage('✨ AI has successfully configured your event details below!');
+        if (data.eventName) setEventName(data.eventName);
+        if (data.eventType) setEventType(data.eventType);
+        if (data.description) setDescription(data.description);
+        if (data.featuresConfig) setFeaturesConfig(typeof data.featuresConfig === 'string' ? data.featuresConfig : JSON.stringify(data.featuresConfig));
+        if (data.registrationSchema) setRegistrationSchema(typeof data.registrationSchema === 'string' ? data.registrationSchema : JSON.stringify(data.registrationSchema));
+        if (data.rolesSchema) setRolesSchema(typeof data.rolesSchema === 'string' ? data.rolesSchema : JSON.stringify(data.rolesSchema));
+        if (data.dashboardSchema) setDashboardSchema(typeof data.dashboardSchema === 'string' ? data.dashboardSchema : JSON.stringify(data.dashboardSchema));
+      },
+      onError: (err: any) => {
+        setAiMessage('');
+        setError(err.response?.data?.error || 'AI generation failed. Please try manual setup.');
+      }
+    });
+  };
 
   // Modal
   const [modal, setModal] = useState<ModalMode>('none');
@@ -411,6 +438,14 @@ export const PortalPage: React.FC = () => {
   const venueMap = '';
   const [startDt, setStartDt] = useState('');
   const [endDt, setEndDt] = useState('');
+
+  // SaaS Dynamic config
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [featuresConfig, setFeaturesConfig] = useState('{"travel":true,"carpool":true,"announcements":true,"chat":true,"gallery":true,"polls":true,"attendance":true}');
+  const [registrationSchema, setRegistrationSchema] = useState('[{"name":"batchOrGroup","label":"Batch / Group","type":"text","placeholder":"e.g. Batch of 2018","required":false}]');
+  const [rolesSchema, setRolesSchema] = useState('["organizer","participant","driver"]');
+  const [dashboardSchema, setDashboardSchema] = useState('["total_registered","confirmed","maybe","not_attending","reached_venue","en_route"]');
+  const [aiMessage, setAiMessage] = useState('');
 
   // Create – step 2
   const [fullName, setFullName] = useState('');
@@ -456,7 +491,20 @@ export const PortalPage: React.FC = () => {
     if (!fullName.trim() || !mobile.trim()) { setError('Name and mobile are required.'); return; }
     createMutation.mutate(
       {
-        event: { eventName, eventType, description, venueName, venueAddress, venueGoogleMapUrl: venueMap, startDatetime: startDt, endDatetime: endDt },
+        event: {
+          eventName,
+          eventType,
+          description,
+          venueName,
+          venueAddress,
+          venueGoogleMapUrl: venueMap,
+          startDatetime: startDt,
+          endDatetime: endDt,
+          featuresConfig,
+          registrationSchema,
+          rolesSchema,
+          dashboardSchema
+        },
         organizer: { fullName, mobileNumber: mobile, email, batchOrGroup: batch, currentCity: city }
       },
       {
@@ -645,6 +693,46 @@ export const PortalPage: React.FC = () => {
 
                   {step === 1 ? (
                     <>
+                      {/* AI-Powered Event Architect Section */}
+                      <div style={{
+                        background: 'rgba(56,189,248,0.06)',
+                        border: '1px dashed rgba(56,189,248,0.25)',
+                        borderRadius: '16px',
+                        padding: '14px',
+                        marginBottom: '12px'
+                      }}>
+                        <Lbl>✨ AI-Powered Event Architect</Lbl>
+                        <textarea
+                          value={aiPrompt}
+                          onChange={e => setAiPrompt(e.target.value)}
+                          placeholder="Describe your event (e.g. 'Create a hackathon for 100 students in Bangalore with schedule, chat, and GitHub fields')"
+                          rows={2}
+                          className="mfp-input"
+                          style={{ resize: 'none', fontSize: '11px', marginBottom: '8px', background: 'rgba(2,6,14,0.4)' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={handleAiGenerate}
+                          disabled={aiGenerateMutation.isPending}
+                          className="mfp-form-btn-primary"
+                          style={{
+                            padding: '8px 12px',
+                            fontSize: '11px',
+                            borderRadius: '8px',
+                            width: 'auto',
+                            boxShadow: 'none',
+                            background: 'linear-gradient(135deg, #0369a1, #0284c7)'
+                          }}
+                        >
+                          {aiGenerateMutation.isPending ? 'Designing...' : 'Generate Setup with AI'}
+                        </button>
+                        {aiMessage && (
+                          <p style={{ fontSize: '10px', color: '#38bdf8', marginTop: '6px', fontWeight: 600 }}>
+                            {aiMessage}
+                          </p>
+                        )}
+                      </div>
+
                       <div>
                         <Lbl>Event Name *</Lbl>
                         <input type="text" value={eventName} onChange={e => setEventName(e.target.value)}

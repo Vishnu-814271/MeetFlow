@@ -3,12 +3,52 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { EVENT_TYPE_CONFIGS } from './PortalPage';
 import { Calendar, MapPin, User, MessageSquare, Compass, Car, LogOut, CheckCircle } from 'lucide-react';
+import { useParticipants } from '../services/hooks';
 
 export const LandingPage: React.FC = () => {
   const { event, currentUser, logout, isLoggedIn, eventSlug } = useAuth();
+  const { data: participants = [] } = useParticipants(event?.id || '');
+
+  const initiatorName = React.useMemo(() => {
+    const org = participants.find(p => p.id === event?.createdBy);
+    return org ? org.fullName : "Event Organizer";
+  }, [participants, event?.createdBy]);
+
+  const dateRangeStr = React.useMemo(() => {
+    if (!event?.startDatetime) return "July 11 – July 12, 2026";
+    const startDate = new Date(event.startDatetime).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const endDate = event.endDatetime 
+      ? new Date(event.endDatetime).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+      : "";
+    return endDate ? `${startDate} – ${endDate}` : startDate;
+  }, [event?.startDatetime, event?.endDatetime]);
+
+  const wrapsStr = React.useMemo(() => {
+    if (!event?.endDatetime) return "Wraps by 3:00 PM";
+    const timeStr = new Date(event.endDatetime).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    return `Wraps by ${timeStr}`;
+  }, [event?.endDatetime]);
+
   const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ALUMNI) : EVENT_TYPE_CONFIGS.ALUMNI;
+  const features = React.useMemo(() => {
+    if (!event?.featuresConfig) {
+      return { travel: true, carpool: true, announcements: true, chat: true, gallery: true, polls: true, attendance: true };
+    }
+    try {
+      return typeof event.featuresConfig === 'string' ? JSON.parse(event.featuresConfig) : event.featuresConfig;
+    } catch (e) {
+      return { travel: true, carpool: true, announcements: true, chat: true, gallery: true, polls: true, attendance: true };
+    }
+  }, [event?.featuresConfig]);
   const navigate = useNavigate();
   const isOrganizer = isLoggedIn && currentUser && event && currentUser.id === event.createdBy;
+
+  const visibleButtonsCount = [
+    features.travel,
+    isOrganizer,
+    features.carpool,
+    (features.announcements || features.chat)
+  ].filter(Boolean).length;
 
   const handleAction = (route: string, requiresAuth: boolean = true) => {
     if (requiresAuth && !isLoggedIn) {
@@ -43,8 +83,8 @@ export const LandingPage: React.FC = () => {
             <div className="flex items-center space-x-3 text-slate-200">
               <Calendar className="w-5 h-5 text-primary shrink-0" />
               <div>
-                <p className="font-semibold">July 11 – July 12, 2026</p>
-                <p className="text-xs text-slate-400">Wraps by 3:00 PM</p>
+                <p className="font-semibold">{dateRangeStr}</p>
+                <p className="text-xs text-slate-400">{wrapsStr}</p>
               </div>
             </div>
 
@@ -69,7 +109,7 @@ export const LandingPage: React.FC = () => {
               <User className="w-5 h-5 text-primary shrink-0" />
               <div>
                 <p className="font-semibold">Event Initiator</p>
-                <p className="text-xs text-slate-400">Ramesh Prasad</p>
+                <p className="text-xs text-slate-400">{initiatorName}</p>
               </div>
             </div>
           </div>
@@ -114,21 +154,25 @@ export const LandingPage: React.FC = () => {
         )}
 
         {/* Grid of Main Navigation CTAs */}
-        <div className={`grid grid-cols-2 ${isOrganizer ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-4 md:gap-5`}>
-          <button
-            onClick={() => handleAction('travel')}
-            className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
-          >
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-3.5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-              <Compass className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">
-              {isLoggedIn ? "Update Travel Plan" : "Submit Travel Plan"}
-            </h3>
-            <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
-              Register departure schedules and origin cities.
-            </p>
-          </button>
+        <div className={`grid grid-cols-2 ${
+          visibleButtonsCount >= 4 ? 'lg:grid-cols-4' : visibleButtonsCount === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'
+        } gap-4 md:gap-5`}>
+          {features.travel && (
+            <button
+              onClick={() => handleAction('travel')}
+              className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+            >
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-3.5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                <Compass className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+                {isLoggedIn ? "Update Travel Plan" : "Submit Travel Plan"}
+              </h3>
+              <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
+                Register departure schedules and origin cities.
+              </p>
+            </button>
+          )}
 
           {isOrganizer && (
             <button
@@ -147,35 +191,39 @@ export const LandingPage: React.FC = () => {
             </button>
           )}
 
-          <button
-            onClick={() => handleAction('carpool')}
-            className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-emerald-500/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
-          >
-            <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500 mb-3.5 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">
-              <Car className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-foreground group-hover:text-emerald-500 transition-colors duration-200">
-              Carpool Board
-            </h3>
-            <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
-              Find nearby matches, offer empty seats, or join open groups.
-            </p>
-          </button>
+          {features.carpool && (
+            <button
+              onClick={() => handleAction('carpool')}
+              className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-emerald-500/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+            >
+              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500 mb-3.5 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">
+                <Car className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-foreground group-hover:text-emerald-500 transition-colors duration-200">
+                Carpool Board
+              </h3>
+              <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
+                Find nearby matches, offer empty seats, or join open groups.
+              </p>
+            </button>
+          )}
 
-          <button
-            onClick={() => handleAction('messages')}
-            className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-rose-500/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
-          >
-            <div className="w-10 h-10 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500 mb-3.5 group-hover:scale-110 group-hover:bg-rose-500/20 transition-all duration-300">
-              <MessageSquare className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-foreground group-hover:text-rose-500 transition-colors duration-200">
-              Messages & News
-            </h3>
-            <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
-              Post questions, travel updates, or see general announcements.
-            </p>
-          </button>
+          {(features.announcements || features.chat) && (
+            <button
+              onClick={() => handleAction('messages')}
+              className="flex flex-col items-start p-5 bg-card border border-border rounded-2xl hover:border-rose-500/40 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+            >
+              <div className="w-10 h-10 bg-rose-500/10 rounded-xl flex items-center justify-center text-rose-500 mb-3.5 group-hover:scale-110 group-hover:bg-rose-500/20 transition-all duration-300">
+                <MessageSquare className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-foreground group-hover:text-rose-500 transition-colors duration-200">
+                Messages & News
+              </h3>
+              <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
+                Post questions, travel updates, or see general announcements.
+              </p>
+            </button>
+          )}
         </div>
       </div>
 

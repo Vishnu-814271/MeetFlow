@@ -53,6 +53,9 @@ public class Participant {
     @Column(name = "allow_contact", nullable = false)
     private boolean allowContact = true;
 
+    @Column(name = "custom_fields_data")
+    private String customFieldsData;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

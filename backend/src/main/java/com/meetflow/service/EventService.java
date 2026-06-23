@@ -162,6 +162,11 @@ public class EventService {
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
         existing.setEventName(eventDto.eventName());
         existing.setEventType(eventDto.eventType());
+        existing.setOrganizationId(eventDto.organizationId());
+        existing.setFeaturesConfig(eventDto.featuresConfig());
+        existing.setRegistrationSchema(eventDto.registrationSchema());
+        existing.setRolesSchema(eventDto.rolesSchema());
+        existing.setDashboardSchema(eventDto.dashboardSchema());
         existing.setDescription(eventDto.description());
         existing.setVenueName(eventDto.venueName());
         existing.setVenueAddress(eventDto.venueAddress());

@@ -111,6 +111,7 @@ public class ParticipantService {
         existing.setShowEmail(dto.showEmail());
         existing.setShowTravelDetails(dto.showTravelDetails());
         existing.setAllowContact(dto.allowContact());
+        existing.setCustomFieldsData(dto.customFieldsData());
 
         Participant saved = participantRepository.save(existing);
 

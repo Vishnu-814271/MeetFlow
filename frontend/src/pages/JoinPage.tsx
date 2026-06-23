@@ -28,6 +28,22 @@ export const JoinPageContent: React.FC = () => {
   const [currentCity, setCurrentCity] = useState('Hyderabad');
   const [attendanceStatus, setAttendanceStatus] = useState('confirmed');
 
+  // Dynamic config fields
+  const [dynamicValues, setDynamicValues] = useState<Record<string, string>>({});
+  const regSchema = React.useMemo(() => {
+    if (!event?.registrationSchema) return [];
+    try {
+      return JSON.parse(event.registrationSchema);
+    } catch (e) {
+      console.error("Failed to parse registration schema", e);
+      return [];
+    }
+  }, [event?.registrationSchema]);
+
+  const handleDynamicChange = (fieldName: string, value: string) => {
+    setDynamicValues(prev => ({ ...prev, [fieldName]: value }));
+  };
+
   // Privacy Fields
   const [showName, setShowName] = useState(true);
   const [showPhone, setShowPhone] = useState(false);
@@ -78,13 +94,19 @@ export const JoinPageContent: React.FC = () => {
 
     setLoading(true);
 
+    let finalBatchOrGroup = batchOrGroup;
+    if (regSchema && regSchema.length > 0) {
+      const firstField = regSchema[0].name;
+      finalBatchOrGroup = dynamicValues[firstField] || '';
+    }
+
     registerMutation.mutate(
       {
         eventId: event!.id,
         fullName: fullName.trim(),
         mobileNumber: mobileNumber.trim(),
         email: email.trim(),
-        batchOrGroup: batchOrGroup.trim(),
+        batchOrGroup: finalBatchOrGroup.trim(),
         currentCity,
         attendanceStatus,
         profileStatus: 'completed',
@@ -93,6 +115,7 @@ export const JoinPageContent: React.FC = () => {
         showEmail,
         showTravelDetails,
         allowContact,
+        customFieldsData: JSON.stringify(dynamicValues),
       },
       {
         onSuccess: (data) => {
@@ -271,19 +294,53 @@ export const JoinPageContent: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">{eventConfig.groupFieldName}</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-muted-foreground"><Users className="w-4 h-4" /></span>
-                    <input
-                      type="text"
-                      value={batchOrGroup}
-                      onChange={(e) => setBatchOrGroup(e.target.value)}
-                      placeholder={eventConfig.groupPlaceholder}
-                      className="w-full pl-10 pr-3 py-2 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-muted-foreground/50"
-                    />
+                {regSchema && regSchema.length > 0 ? (
+                  regSchema.map((field: any) => (
+                    <div key={field.name} className="col-span-2 md:col-span-1">
+                      <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
+                        {field.label} {field.required && '*'}
+                      </label>
+                      <div className="relative">
+                        {field.type === 'select' ? (
+                          <select
+                            value={dynamicValues[field.name] || ''}
+                            onChange={(e) => handleDynamicChange(field.name, e.target.value)}
+                            required={field.required}
+                            className="w-full px-3 py-2 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+                          >
+                            <option value="">{field.placeholder || 'Select option'}</option>
+                            {field.options?.map((opt: string) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            type={field.type === 'number' ? 'number' : 'text'}
+                            value={dynamicValues[field.name] || ''}
+                            onChange={(e) => handleDynamicChange(field.name, e.target.value)}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            className="w-full px-3 py-2 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-muted-foreground/50"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div>
+                    <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">{eventConfig.groupFieldName}</label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-muted-foreground"><Users className="w-4 h-4" /></span>
+                      <input
+                        type="text"
+                        value={batchOrGroup}
+                        onChange={(e) => setBatchOrGroup(e.target.value)}
+                        placeholder={eventConfig.groupPlaceholder}
+                        className="w-full pl-10 pr-3 py-2 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-muted-foreground/50"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div>
                   <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Current City</label>

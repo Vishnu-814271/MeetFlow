@@ -21,6 +21,21 @@ public class Event {
     @Column(name = "event_type", nullable = false)
     private String eventType;
 
+    @Column(name = "organization_id")
+    private String organizationId;
+
+    @Column(name = "features_config")
+    private String featuresConfig;
+
+    @Column(name = "registration_schema")
+    private String registrationSchema;
+
+    @Column(name = "roles_schema")
+    private String rolesSchema;
+
+    @Column(name = "dashboard_schema")
+    private String dashboardSchema;
+
     @Column(name = "event_slug", nullable = false, unique = true)
     private String eventSlug;
 
@@ -60,6 +75,18 @@ public class Event {
         }
         if (eventType == null) {
             eventType = "ALUMNI";
+        }
+        if (featuresConfig == null) {
+            featuresConfig = "{\"travel\":true,\"carpool\":true,\"announcements\":true,\"chat\":true,\"gallery\":true,\"polls\":true,\"attendance\":true}";
+        }
+        if (registrationSchema == null) {
+            registrationSchema = "[{\"name\":\"batchOrGroup\",\"label\":\"Batch / Group\",\"type\":\"text\",\"placeholder\":\"e.g. Batch of 2018\",\"required\":false}]";
+        }
+        if (rolesSchema == null) {
+            rolesSchema = "[\"organizer\",\"participant\",\"driver\"]";
+        }
+        if (dashboardSchema == null) {
+            dashboardSchema = "[\"total_registered\",\"confirmed\",\"maybe\",\"not_attending\",\"pending_responses\",\"reached_venue\",\"en_route\"]";
         }
         if (createdAt == null) {
             createdAt = LocalDateTime.now();
