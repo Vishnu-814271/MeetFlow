@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
         <div className="space-y-8">
           <NavLink to={`/event/${slug}`} className="flex items-center space-x-2.5 font-black text-2xl text-white tracking-tight">
             <Layers className="w-6 h-6 rotate-45 text-primary animate-pulse-slow" />
-            <span>MeetFlow</span>
+            <span>MEET-FLOW</span>
           </NavLink>
           
           <nav className="flex flex-col space-y-2 text-sm font-semibold">

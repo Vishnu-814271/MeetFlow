@@ -56,7 +56,7 @@ public class CarpoolService {
                 .joinedAt(LocalDateTime.now())
                 .status("active")
                 .build();
-        carpoolMemberRepository.save(driverMember);
+        carpoolMemberRepository.saveAndFlush(driverMember);
 
         return enrichGroupDetails(saved);
     }

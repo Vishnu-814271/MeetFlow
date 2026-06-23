@@ -89,14 +89,14 @@ public class NotificationService {
                 : plan.getOriginCity();
 
         return String.format(
-                "🚀 *MeetFlow Reminder*\n\n" +
+                "🚀 *MEET-FLOW Reminder*\n\n" +
                 "Hi %s! Your departure for *%s* is in *30 minutes*.\n\n" +
                 "📍 From: %s\n" +
                 "🕒 At: %s on %s\n" +
                 "🚗 Mode: %s\n" +
                 "📌 Venue: %s\n\n" +
                 "Safe travels! See you there 🙏\n" +
-                "— MeetFlow",
+                "— MEET-FLOW",
                 firstName,
                 event.getEventName(),
                 originDisplay,

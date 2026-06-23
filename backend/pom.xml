@@ -12,7 +12,7 @@
     <artifactId>meetflow-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>meetflow-backend</name>
-    <description>NLP Alumni Meetup Coordination Backend</description>
+    <description>MEET-FLOW Event Coordination Backend</description>
     
     <properties>
         <java.version>21</java.version>

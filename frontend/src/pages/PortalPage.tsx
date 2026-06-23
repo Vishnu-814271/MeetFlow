@@ -485,7 +485,7 @@ export const PortalPage: React.FC = () => {
             marginBottom: 8, fontSize: 'clamp(2.2rem,7vw,5rem)', fontWeight: 900,
             lineHeight: 1.05, color: '#ffffff', letterSpacing: '-0.02em'
           }}>
-            <RollingTitle text="NLP Alumni Meetup" />
+            <RollingTitle text="MEET-FLOW" />
           </div>
 
           {/* ── YEAR: bright shimmer ── */}
@@ -517,7 +517,7 @@ export const PortalPage: React.FC = () => {
           </div>
 
           <p style={{ marginTop: 52, fontSize: 11, color: 'rgba(71,85,105,0.6)', fontWeight: 500 }}>
-            Powered by <span style={{ color: 'rgba(100,116,139,0.5)' }}>MeetFlow</span>
+            Powered by <span style={{ color: 'rgba(100,116,139,0.5)' }}>MEET-FLOW</span>
           </p>
         </div>
       </div>

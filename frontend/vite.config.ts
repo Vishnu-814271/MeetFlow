@@ -13,9 +13,9 @@ export default defineConfig({
         enabled: true
       },
       manifest: {
-        name: 'MeetFlow - NLP Alumni Meetup',
-        short_name: 'MeetFlow',
-        description: 'Community coordination dashboard for NLP Alumni Meetup 2026',
+        name: 'MEET-FLOW',
+        short_name: 'MEET-FLOW',
+        description: 'Community coordination dashboard for seamless event meetups',
         theme_color: '#3b82f6',
         background_color: '#ffffff',
         display: 'standalone',

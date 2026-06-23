@@ -374,7 +374,7 @@ export const SettingsPageContent: React.FC = () => {
           </h3>
 
           <p className="text-xs text-muted-foreground leading-normal mb-4 bg-muted/20 border border-border/40 p-2.5 rounded-2xl">
-            MeetFlow respects your privacy settings. Toggles below control which details are published to other participants in the search directory and data downloads.
+            MEET-FLOW respects your privacy settings. Toggles below control which details are published to other participants in the search directory and data downloads.
           </p>
 
           <form onSubmit={handleSavePrivacy} className="space-y-4">

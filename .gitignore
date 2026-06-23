@@ -2,6 +2,7 @@
 backend/target/
 backend/bin/
 backend/*.db
+backend/data/
 
 # Node
 frontend/node_modules/
@@ -20,3 +21,8 @@ frontend/playwright-report/
 *.sw?
 .DS_Store
 Thumbs.db
+
+# Env files
+.env
+.env.local
+.env.*.local
