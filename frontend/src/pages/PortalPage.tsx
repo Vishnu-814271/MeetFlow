@@ -57,13 +57,25 @@ const CSS = `
   .mfp-root {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    background: #0a1628;
+    background: radial-gradient(circle at 50% 50%, #0c1c38 0%, #060d1a 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+  }
+
+  .mfp-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at center, black, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent 75%);
   }
 
   /* ── Continuous rolling wave — infinite loop ───────────────────── */
@@ -161,20 +173,25 @@ const CSS = `
   }
   .mfp-btn:hover { transform: translateY(-4px); }
   .mfp-btn-create {
-    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
     color: #fff;
-    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.55);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
   }
-  .mfp-btn-create:hover { box-shadow: 0 14px 40px rgba(37, 99, 235, 0.7); }
+  .mfp-btn-create:hover { 
+    box-shadow: 0 14px 40px rgba(99, 102, 241, 0.65);
+    background: linear-gradient(135deg, #38bdf8, #4f46e5);
+  }
   .mfp-btn-join {
-    background: rgba(255,255,255,0.06);
-    color: #93c5fd;
-    border: 2px solid rgba(99, 179, 255, 0.4);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.03);
+    color: #38bdf8;
+    border: 2px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
   }
   .mfp-btn-join:hover {
-    background: rgba(37,99,235,0.25);
-    border-color: rgba(99, 179, 255, 0.7);
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.6);
+    color: #ffffff;
   }
 
   /* ── Badge ─────────────────────────────────────────────────────── */
@@ -535,6 +552,7 @@ export const PortalPage: React.FC = () => {
 
       {/* ── Root page ── */}
       <div className="mfp-root">
+        <div className="mfp-grid" />
 
         {/* Decorative orbs */}
         <div className="mfp-orb" style={{
