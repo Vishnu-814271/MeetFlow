@@ -5,6 +5,7 @@ import api from './api';
 export interface Event {
   id: string;
   eventName: string;
+  eventType: string;
   eventSlug: string;
   eventCode: string;
   description: string;

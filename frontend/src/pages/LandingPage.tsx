@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { EVENT_TYPE_CONFIGS } from './PortalPage';
 import { Calendar, MapPin, User, MessageSquare, Compass, Car, LogOut, CheckCircle } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
   const { event, currentUser, logout, isLoggedIn, eventSlug } = useAuth();
+  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ALUMNI) : EVENT_TYPE_CONFIGS.ALUMNI;
   const navigate = useNavigate();
   const isOrganizer = isLoggedIn && currentUser && event && currentUser.id === event.createdBy;
 
@@ -27,7 +29,7 @@ export const LandingPage: React.FC = () => {
           <div className="absolute left-1/3 bottom-0 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl"></div>
           
           <span className="inline-block px-3 py-1 bg-primary/20 border border-primary/30 text-primary rounded-full text-xs font-semibold tracking-wide uppercase mb-3 animate-float">
-            NLP Meetup Cohort
+            {eventConfig.label}
           </span>
 
           <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3 bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
@@ -100,7 +102,7 @@ export const LandingPage: React.FC = () => {
           <div className="p-5 bg-muted/30 border border-border rounded-2xl flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 shadow-sm transition-all hover:bg-muted/40">
             <div>
               <h3 className="text-sm font-bold text-foreground">Coordinate Travel & Carpools</h3>
-              <p className="text-xs text-muted-foreground mt-0.5">Register to coordinate with 56 other alumni participants.</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{eventConfig.registrationSubtitle}</p>
             </div>
             <button
               onClick={() => navigate(`/event/${eventSlug}/join`)}
@@ -204,7 +206,11 @@ export const LandingPage: React.FC = () => {
               <div className="absolute -left-1.5 top-1.5 w-3 h-3 bg-muted-foreground/30 rounded-full border-2 border-card group-hover:scale-125 transition-transform duration-200"></div>
               <p className="text-xs font-semibold text-muted-foreground">July 11 — 07:00 PM</p>
               <h4 className="text-sm font-bold text-foreground mt-0.5">Cohort Networking Dinner</h4>
-              <p className="text-xs text-muted-foreground mt-1 leading-normal">Open-air social dinner and alumni chapter launch presentations.</p>
+              <p className="text-xs text-muted-foreground mt-1 leading-normal">
+                {event?.eventType === 'ALUMNI' || !event?.eventType
+                  ? 'Open-air social dinner and alumni chapter launch presentations.'
+                  : 'Open-air social dinner and collaborative networking sessions.'}
+              </p>
             </div>
 
             <div className="relative pl-6 group">

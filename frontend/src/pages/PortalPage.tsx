@@ -8,6 +8,48 @@ import {
 import { useCreateEventWithOrganizer, useEventByCode } from '../services/hooks';
 import confetti from 'canvas-confetti';
 
+export const EVENT_TYPE_CONFIGS: Record<string, {
+  label: string;
+  badgeLabel: string;
+  groupFieldName: string;
+  groupPlaceholder: string;
+  registrationSubtitle: string;
+  inviteHelper: string;
+}> = {
+  ALUMNI: {
+    label: 'Alumni Reunion',
+    badgeLabel: 'Alumni Network',
+    groupFieldName: 'Batch / Group',
+    groupPlaceholder: 'e.g. Batch of 2018',
+    registrationSubtitle: 'Register to coordinate with other alumni participants.',
+    inviteHelper: 'Share the access code with your alumni group.',
+  },
+  COMMUNITY: {
+    label: 'Community Gathering',
+    badgeLabel: 'Community Event',
+    groupFieldName: 'Interest Group / Chapter',
+    groupPlaceholder: 'e.g. Hyderabad Chapter',
+    registrationSubtitle: 'Register to coordinate with other community members.',
+    inviteHelper: 'Share the access code with your community.',
+  },
+  INSTITUTION: {
+    label: 'Institutional Event',
+    badgeLabel: 'Academic / Institution',
+    groupFieldName: 'Department / Affiliation',
+    groupPlaceholder: 'e.g. Computer Science Dept',
+    registrationSubtitle: 'Register to coordinate with other institutional attendees.',
+    inviteHelper: 'Share the access code with your colleagues/students.',
+  },
+  ORGANIZER: {
+    label: 'Professional Event',
+    badgeLabel: 'Organizer Event',
+    groupFieldName: 'Company / Organization',
+    groupPlaceholder: 'e.g. TechCorp Solutions',
+    registrationSubtitle: 'Register to coordinate with other participants.',
+    inviteHelper: 'Share the access code with your event participants.',
+  },
+};
+
 // ─── Scoped CSS ───────────────────────────────────────────────────────────────
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
@@ -355,13 +397,14 @@ export const PortalPage: React.FC = () => {
   const [step, setStep] = useState(1);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
-  const [success, setSuccess] = useState<{ code: string; slug: string; name: string } | null>(null);
+  const [success, setSuccess] = useState<{ code: string; slug: string; name: string; eventType: string } | null>(null);
 
   // Join form
   const [joinCode, setJoinCode] = useState('');
 
   // Create – step 1
   const [eventName, setEventName] = useState('');
+  const [eventType, setEventType] = useState('ALUMNI');
   const [description, setDescription] = useState('');
   const [venueName, setVenueName] = useState('');
   const [venueAddress, setVenueAddress] = useState('');
@@ -413,7 +456,7 @@ export const PortalPage: React.FC = () => {
     if (!fullName.trim() || !mobile.trim()) { setError('Name and mobile are required.'); return; }
     createMutation.mutate(
       {
-        event: { eventName, description, venueName, venueAddress, venueGoogleMapUrl: venueMap, startDatetime: startDt, endDatetime: endDt },
+        event: { eventName, eventType, description, venueName, venueAddress, venueGoogleMapUrl: venueMap, startDatetime: startDt, endDatetime: endDt },
         organizer: { fullName, mobileNumber: mobile, email, batchOrGroup: batch, currentCity: city }
       },
       {
@@ -422,7 +465,7 @@ export const PortalPage: React.FC = () => {
           localStorage.setItem(`meetflow_user_${d.event.eventSlug}`, JSON.stringify(d.organizer));
           localStorage.setItem('meetflow_last_active_slug', d.event.eventSlug);
           localStorage.setItem('meetflow_last_active_name', d.event.eventName);
-          setSuccess({ code: d.event.eventCode, slug: d.event.eventSlug, name: d.event.eventName });
+          setSuccess({ code: d.event.eventCode, slug: d.event.eventSlug, name: d.event.eventName, eventType: d.event.eventType });
         },
         onError: (err: any) => setError(err.response?.data?.error || 'Failed to create event.'),
       }
@@ -608,6 +651,15 @@ export const PortalPage: React.FC = () => {
                           placeholder="e.g. Summer Reunion 2026" required autoFocus className="mfp-input" />
                       </div>
                       <div>
+                        <Lbl>Event Type *</Lbl>
+                        <select value={eventType} onChange={e => setEventType(e.target.value)} className="mfp-input" style={{ fontSize: 12 }}>
+                          <option value="ALUMNI">Alumni Reunion / Meetup</option>
+                          <option value="COMMUNITY">Community / Interest Group Gathering</option>
+                          <option value="INSTITUTION">School / College / University Event</option>
+                          <option value="ORGANIZER">Professional / Organizer Event (General)</option>
+                        </select>
+                      </div>
+                      <div>
                         <Lbl>Description</Lbl>
                         <textarea value={description} onChange={e => setDescription(e.target.value)}
                           placeholder="What's this meetup about?" rows={2}
@@ -719,7 +771,9 @@ export const PortalPage: React.FC = () => {
                   </div>
                   <div>
                     <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>Event Created! 🎉</div>
-                    <div style={{ fontSize: 12, color: 'rgba(100,116,139,0.8)' }}>Share the access code with your alumni group.</div>
+                    <div style={{ fontSize: 12, color: 'rgba(100,116,139,0.8)' }}>
+                      {EVENT_TYPE_CONFIGS[success.eventType]?.inviteHelper || EVENT_TYPE_CONFIGS.ALUMNI.inviteHelper}
+                    </div>
                   </div>
                   <div className="mfp-info-card" style={{ textAlign: 'left' }}>
                     <div style={{ marginBottom: 12 }}>

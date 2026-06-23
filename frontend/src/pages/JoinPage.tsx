@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useRegister } from '../services/hooks';
+import { EVENT_TYPE_CONFIGS } from './PortalPage';
 import { KeyRound, User, Phone, Mail, MapPin, Users, Loader2, ArrowRight, ArrowLeft } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const JoinPageContent: React.FC = () => {
   const { event, eventLoading, setCurrentUser, eventSlug, login } = useAuth();
+  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ALUMNI) : EVENT_TYPE_CONFIGS.ALUMNI;
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const codeParam = searchParams.get('code') || '';
@@ -270,14 +272,14 @@ export const JoinPageContent: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Batch / Group</label>
+                  <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">{eventConfig.groupFieldName}</label>
                   <div className="relative">
                     <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-muted-foreground"><Users className="w-4 h-4" /></span>
                     <input
                       type="text"
                       value={batchOrGroup}
                       onChange={(e) => setBatchOrGroup(e.target.value)}
-                      placeholder="Batch of 2018"
+                      placeholder={eventConfig.groupPlaceholder}
                       className="w-full pl-10 pr-3 py-2 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-muted-foreground/50"
                     />
                   </div>

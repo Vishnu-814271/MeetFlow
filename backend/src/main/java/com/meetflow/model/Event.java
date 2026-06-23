@@ -18,6 +18,9 @@ public class Event {
     @Column(name = "event_name", nullable = false)
     private String eventName;
 
+    @Column(name = "event_type", nullable = false)
+    private String eventType;
+
     @Column(name = "event_slug", nullable = false, unique = true)
     private String eventSlug;
 
@@ -54,6 +57,9 @@ public class Event {
     protected void onCreate() {
         if (id == null) {
             id = java.util.UUID.randomUUID().toString();
+        }
+        if (eventType == null) {
+            eventType = "ALUMNI";
         }
         if (createdAt == null) {
             createdAt = LocalDateTime.now();

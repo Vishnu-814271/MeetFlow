@@ -161,6 +161,7 @@ public class EventService {
         Event existing = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
         existing.setEventName(eventDto.eventName());
+        existing.setEventType(eventDto.eventType());
         existing.setDescription(eventDto.description());
         existing.setVenueName(eventDto.venueName());
         existing.setVenueAddress(eventDto.venueAddress());
