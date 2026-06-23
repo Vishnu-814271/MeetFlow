@@ -141,7 +141,7 @@ export const TravelPageContent: React.FC = () => {
 
       <div className="card p-5 bg-card border border-border rounded-3xl shadow-sm glass">
         {success && (
-          <div className="text-xs text-emerald-600 bg-emerald-500/10 p-3 rounded-lg font-bold mb-4">
+          <div className="text-xs text-secondary bg-secondary/10 border border-secondary/20 p-3 rounded-lg font-bold mb-4">
             {success} Redirecting...
           </div>
         )}

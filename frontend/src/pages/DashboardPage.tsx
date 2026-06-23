@@ -98,11 +98,11 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-emerald-500/40 relative overflow-hidden flex flex-col justify-between group">
-          <div className="absolute right-0 bottom-0 w-16 h-16 bg-emerald-500/5 rounded-full blur-xl group-hover:bg-emerald-500/10 transition-colors"></div>
+        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary/40 relative overflow-hidden flex flex-col justify-between group">
+          <div className="absolute right-0 bottom-0 w-16 h-16 bg-secondary/5 rounded-full blur-xl group-hover:bg-secondary/10 transition-colors"></div>
           <div className="flex items-center justify-between text-muted-foreground mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">Confirmed</span>
-            <CheckCircle className="w-4.5 h-4.5 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
+            <CheckCircle className="w-4.5 h-4.5 text-secondary shrink-0 group-hover:scale-110 transition-transform" />
           </div>
           <div>
             <h3 className="text-3xl font-extrabold text-foreground tracking-tight">{attendanceSummary.confirmed}</h3>
@@ -110,11 +110,11 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-amber-500/40 relative overflow-hidden flex flex-col justify-between group">
-          <div className="absolute right-0 bottom-0 w-16 h-16 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-colors"></div>
+        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/40 relative overflow-hidden flex flex-col justify-between group">
+          <div className="absolute right-0 bottom-0 w-16 h-16 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors"></div>
           <div className="flex items-center justify-between text-muted-foreground mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">En Route</span>
-            <Compass className="w-4.5 h-4.5 text-amber-500 shrink-0 animate-pulse-slow group-hover:scale-110 transition-transform" />
+            <Compass className="w-4.5 h-4.5 text-primary shrink-0 animate-pulse-slow group-hover:scale-110 transition-transform" />
           </div>
           <div>
             <h3 className="text-3xl font-extrabold text-foreground tracking-tight">{attendanceSummary.enRoute}</h3>
@@ -122,11 +122,11 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-teal-500/40 relative overflow-hidden flex flex-col justify-between group">
-          <div className="absolute right-0 bottom-0 w-16 h-16 bg-teal-500/5 rounded-full blur-xl group-hover:bg-teal-500/10 transition-colors"></div>
+        <div className="bg-card border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary/40 relative overflow-hidden flex flex-col justify-between group">
+          <div className="absolute right-0 bottom-0 w-16 h-16 bg-secondary/5 rounded-full blur-xl group-hover:bg-secondary/10 transition-colors"></div>
           <div className="flex items-center justify-between text-muted-foreground mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">Reached</span>
-            <UserCheck className="w-4.5 h-4.5 text-teal-600 shrink-0 group-hover:scale-110 transition-transform" />
+            <UserCheck className="w-4.5 h-4.5 text-secondary shrink-0 group-hover:scale-110 transition-transform" />
           </div>
           <div>
             <h3 className="text-3xl font-extrabold text-foreground tracking-tight">{attendanceSummary.reachedVenue}</h3>
@@ -242,10 +242,10 @@ export const DashboardPage: React.FC = () => {
 
         {/* Right column (4 cols): Pending Travel Responses (Sticky on desktop viewports) */}
         <div className="lg:col-span-4 lg:sticky lg:top-24">
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-amber-500/20 flex flex-col max-h-[500px]">
+          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/20 flex flex-col max-h-[500px]">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-bold text-foreground flex items-center space-x-1.5">
-                <ShieldAlert className="w-4 h-4 text-amber-500" />
+                <ShieldAlert className="w-4 h-4 text-primary" />
                 <span>Pending responses ({pendingResponses.length})</span>
               </h2>
               <button 
@@ -272,7 +272,7 @@ export const DashboardPage: React.FC = () => {
                           href={`https://wa.me/${p.mobileNumber.replace('+', '')}`} 
                           target="_blank" 
                           rel="noreferrer"
-                          className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg hover:bg-emerald-500/20 transition-all duration-200"
+                          className="p-2 bg-secondary/10 text-secondary rounded-lg hover:bg-secondary/20 transition-all duration-200"
                           title="Contact on WhatsApp"
                         >
                           <MessageCircle className="w-4 h-4" />

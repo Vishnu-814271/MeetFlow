@@ -57,7 +57,7 @@ const CSS = `
   .mfp-root {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    background: radial-gradient(circle at 50% 50%, #0c1c38 0%, #060d1a 100%);
+    background: radial-gradient(circle at 50% 50%, #121218 0%, #050508 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +82,7 @@ const CSS = `
   @keyframes mfp-roll-wave {
     0%    { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
     15%   { transform: translateY(-22px) rotateZ(-12deg); color: #38bdf8; }
-    30%   { transform: translateY(5px)   rotateZ(5deg);   color: #93c5fd; }
+    30%   { transform: translateY(5px)   rotateZ(5deg);   color: #f97316; }
     45%   { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
     100%  { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
   }
@@ -117,7 +117,7 @@ const CSS = `
     100% { background-position: 200% center; }
   }
   .mfp-year {
-    background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+    background: linear-gradient(90deg, #38bdf8, #f97316, #38bdf8);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -232,7 +232,7 @@ const CSS = `
     width: 100%; max-width: 440px;
     border-radius: 24px;
     overflow: auto; max-height: 90vh;
-    background: #0f1f38;
+    background: #121218;
     border: 1px solid rgba(56,189,248,0.2);
     box-shadow: 0 32px 80px rgba(0,0,0,0.7);
     animation: mfp-modal-in 0.3s cubic-bezier(0.34,1.4,0.64,1) forwards;
@@ -242,8 +242,8 @@ const CSS = `
   /* ── Inputs ─────────────────────────────────────────────────────── */
   .mfp-input {
     width: 100%;
-    background: rgba(6,12,26,0.8);
-    border: 1.5px solid rgba(30,58,138,0.5);
+    background: rgba(24,24,32,0.8);
+    border: 1.5px solid rgba(56,189,248,0.25);
     border-radius: 12px;
     color: #e2e8f0;
     font-size: 13px;
@@ -254,10 +254,10 @@ const CSS = `
   .mfp-input::placeholder { color: rgba(100,116,139,0.55); }
   .mfp-input:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
   }
-  .mfp-input option { background: #0f1f38; color: #e2e8f0; }
+  .mfp-input option { background: #121218; color: #e2e8f0; }
 
   /* ── Icon input wrap ─────────────────────────────────────────────── */
   .mfp-iw { position: relative; }
@@ -269,8 +269,8 @@ const CSS = `
 
   /* ── Step bar ─────────────────────────────────────────────────── */
   .mfp-step { height: 3px; border-radius: 4px; flex: 1; transition: background 0.4s ease; }
-  .mfp-step.active { background: linear-gradient(90deg,#1d4ed8,#38bdf8); }
-  .mfp-step.inactive { background: rgba(30,41,59,0.8); }
+  .mfp-step.active { background: linear-gradient(90deg,#f97316,#38bdf8); }
+  .mfp-step.inactive { background: rgba(32,32,46,0.8); }
 
   /* ── Error banner ─────────────────────────────────────────────── */
   .mfp-error {
@@ -291,21 +291,21 @@ const CSS = `
   .mfp-close-btn {
     width: 32px; height: 32px; border-radius: 10px;
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    background: rgba(30,41,59,0.7); color: rgba(148,163,184,0.8);
+    background: rgba(32,32,46,0.7); color: rgba(148,163,184,0.8);
     transition: background 0.2s;
   }
   .mfp-close-btn:hover { background: rgba(239,68,68,0.2); }
 
   /* ── Divider ───────────────────────────────────────────────────── */
-  .mfp-divider { height: 1px; background: rgba(30,58,138,0.35); margin: 12px 0; }
+  .mfp-divider { height: 1px; background: rgba(32,32,46,0.8); margin: 12px 0; }
 
   /* ── Form action buttons ───────────────────────────────────────── */
   .mfp-form-btn-primary {
     width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 12px 20px; border-radius: 14px; border: none; cursor: pointer;
-    background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff;
+    background: linear-gradient(135deg,#f97316,#ea580c); color: #fff;
     font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700;
-    box-shadow: 0 4px 20px rgba(37,99,235,0.45);
+    box-shadow: 0 4px 20px rgba(249,115,22,0.45);
     transition: opacity 0.2s, transform 0.2s;
   }
   .mfp-form-btn-primary:hover { transform: translateY(-1px); }
@@ -313,16 +313,16 @@ const CSS = `
 
   .mfp-form-btn-back {
     display: flex; align-items: center; gap: 6px;
-    padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(30,58,138,0.4);
-    cursor: pointer; background: rgba(30,41,59,0.7);
+    padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(32,32,46,0.8);
+    cursor: pointer; background: rgba(32,32,46,0.7);
     color: #94a3b8; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
     transition: background 0.2s;
   }
-  .mfp-form-btn-back:hover { background: rgba(30,58,138,0.25); }
+  .mfp-form-btn-back:hover { background: rgba(32,32,46,0.25); }
 
   /* ── Info card ─────────────────────────────────────────────────── */
   .mfp-info-card {
-    background: rgba(6,12,26,0.9); border: 1px solid rgba(30,58,138,0.45);
+    background: rgba(18,18,24,0.9); border: 1px solid rgba(32,32,46,0.8);
     border-radius: 16px; padding: 16px;
   }
 
@@ -337,14 +337,14 @@ const CSS = `
   .mfp-copy-row {
     display: flex; align-items: center; gap: 8px;
     padding: 8px 12px; border-radius: 10px;
-    background: rgba(2,6,14,0.8); border: 1px solid rgba(30,58,138,0.3);
+    background: rgba(18,18,24,0.8); border: 1px solid rgba(32,32,46,0.8);
   }
   .mfp-copy-btn {
     flex-shrink: 0; padding: 6px; border-radius: 8px; border: none;
-    cursor: pointer; background: rgba(30,58,138,0.5); color: #60a5fa;
+    cursor: pointer; background: rgba(56,189,248,0.15); color: #38bdf8;
     display: flex; align-items: center; transition: background 0.2s;
   }
-  .mfp-copy-btn:hover { background: rgba(30,58,138,0.8); }
+  .mfp-copy-btn:hover { background: rgba(56,189,248,0.3); }
 `;
 
 // ─── RollingTitle — continuous infinite wave ──────────────────────────────────

@@ -211,14 +211,14 @@ export const DirectoryPage: React.FC = () => {
                 {/* Header Row */}
                 <div className="flex items-start justify-between gap-3.5 mb-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-indigo-500/10 text-primary border border-primary/20 rounded-full flex items-center justify-center font-black text-xs uppercase shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary border border-primary/20 rounded-full flex items-center justify-center font-black text-xs uppercase shrink-0">
                       {(p.showName ? p.fullName : "Anonymous").charAt(0)}
                     </div>
                     <div>
                       <h3 className="text-sm font-bold text-foreground flex items-center space-x-1.5 flex-wrap gap-y-1">
                         <span>{p.showName ? p.fullName : "Anonymous"}</span>
                         {p.attendanceStatus === 'not_attending' && (
-                          <span className="px-1.5 py-0.5 bg-rose-500/10 text-rose-500 rounded text-[9px] font-bold">Not Coming</span>
+                          <span className="px-1.5 py-0.5 bg-primary/15 text-primary rounded text-[9px] font-bold">Not Coming</span>
                         )}
                       </h3>
                       <p className="text-[10px] text-muted-foreground mt-0.5">
@@ -282,7 +282,7 @@ export const DirectoryPage: React.FC = () => {
                         href={`https://wa.me/${p.mobileNumber.replace('+', '')}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-3 py-1.5 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 rounded-lg font-bold text-[11px] hover:shadow-sm active:scale-95 transition-all flex items-center space-x-1"
+                        className="px-3 py-1.5 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-lg font-bold text-[11px] hover:shadow-sm active:scale-95 transition-all flex items-center space-x-1"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
                         <span>Chat WhatsApp</span>
@@ -327,27 +327,27 @@ const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   switch (s) {
     case 'reached_venue':
       return (
-        <span className="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 rounded-full text-[10px] font-extrabold uppercase flex items-center space-x-1 shadow-sm">
-          <UserCheck className="w-3 h-3 shrink-0 text-emerald-500" />
+        <span className="px-2.5 py-0.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-[10px] font-extrabold uppercase flex items-center space-x-1 shadow-sm">
+          <UserCheck className="w-3 h-3 shrink-0 text-secondary" />
           <span>Reached</span>
         </span>
       );
     case 'en_route':
       return (
-        <span className="px-2.5 py-0.5 bg-amber-500/10 text-amber-600 border border-amber-500/20 rounded-full text-[10px] font-extrabold uppercase flex items-center space-x-1 animate-glow shadow-sm">
-          <Compass className="w-3 h-3 shrink-0 text-amber-500" />
+        <span className="px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-extrabold uppercase flex items-center space-x-1 animate-glow shadow-sm">
+          <Compass className="w-3 h-3 shrink-0 text-primary" />
           <span>En Route</span>
         </span>
       );
     case 'travel_plan_submitted':
       return (
-        <span className="px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-extrabold uppercase shadow-sm">
+        <span className="px-2.5 py-0.5 bg-secondary/15 text-secondary border border-secondary/20 rounded-full text-[10px] font-extrabold uppercase shadow-sm">
           Plan OK
         </span>
       );
     case 'not_coming':
       return (
-        <span className="px-2.5 py-0.5 bg-rose-500/10 text-rose-600 border border-rose-500/20 rounded-full text-[10px] font-extrabold uppercase shadow-sm">
+        <span className="px-2.5 py-0.5 bg-primary/15 text-primary border border-primary/20 rounded-full text-[10px] font-extrabold uppercase shadow-sm">
           Not Coming
         </span>
       );

@@ -83,7 +83,7 @@ export const ExportsPageContent: React.FC = () => {
       </div>
 
       {/* Info Warning Banner */}
-      <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 rounded-2xl flex items-start space-x-2 text-xs">
+      <div className="p-3 bg-secondary/10 border border-secondary/20 text-secondary rounded-2xl flex items-start space-x-2 text-xs">
         <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
         <div>
           <p className="font-bold">Privacy Masking Enabled</p>
@@ -95,8 +95,8 @@ export const ExportsPageContent: React.FC = () => {
 
       {/* Success/Error Alerts */}
       {success && (
-        <div className="text-xs text-emerald-600 bg-emerald-500/10 p-3 rounded-xl font-bold flex items-center space-x-1.5">
-          <CheckCircle className="w-4 h-4 text-emerald-500" />
+        <div className="text-xs text-secondary bg-secondary/10 border border-secondary/20 p-3 rounded-xl font-bold flex items-center space-x-1.5">
+          <CheckCircle className="w-4 h-4 text-secondary" />
           <span>{success}</span>
         </div>
       )}
@@ -139,7 +139,7 @@ export const ExportsPageContent: React.FC = () => {
         {/* 2. Travel Plans List */}
         <div className="card p-5 bg-card border border-border rounded-3xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-primary/30 transition-all">
           <div className="flex items-start space-x-3.5">
-            <div className="w-10 h-10 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 shrink-0">
+            <div className="w-10 h-10 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary shrink-0">
               <Compass className="w-5 h-5" />
             </div>
             <div>
@@ -167,7 +167,7 @@ export const ExportsPageContent: React.FC = () => {
         {/* 3. Carpools List */}
         <div className="card p-5 bg-card border border-border rounded-3xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-primary/30 transition-all">
           <div className="flex items-start space-x-3.5">
-            <div className="w-10 h-10 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 shrink-0">
+            <div className="w-10 h-10 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary shrink-0">
               <Car className="w-5 h-5" />
             </div>
             <div>

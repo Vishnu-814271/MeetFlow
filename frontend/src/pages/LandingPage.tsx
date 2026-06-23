@@ -119,7 +119,7 @@ export const LandingPage: React.FC = () => {
         {isLoggedIn && currentUser ? (
           <div className="flex items-center justify-between p-5 bg-primary/5 border border-primary/20 rounded-2xl glass shadow-sm transition-all duration-300 hover:shadow-md">
             <div className="flex items-center space-x-3.5">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-indigo-600 rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
                 {currentUser.fullName.charAt(0)}
               </div>
               <div>
@@ -160,12 +160,12 @@ export const LandingPage: React.FC = () => {
           {features.travel && (
             <button
               onClick={() => handleAction('travel')}
-              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-sky-400/40 hover:shadow-lg hover:shadow-sky-500/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-secondary/40 hover:shadow-lg hover:shadow-secondary/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
             >
-              <div className="w-10 h-10 bg-sky-500/10 rounded-xl flex items-center justify-center text-sky-400 mb-3.5 group-hover:scale-110 group-hover:bg-sky-500/20 transition-all duration-300">
+              <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-3.5 group-hover:scale-110 group-hover:bg-secondary/20 transition-all duration-300">
                 <Compass className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-bold text-foreground group-hover:text-sky-400 transition-colors duration-200">
+              <h3 className="text-sm font-bold text-foreground group-hover:text-secondary transition-colors duration-200">
                 {isLoggedIn ? "Update Travel Plan" : "Submit Travel Plan"}
               </h3>
               <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
@@ -177,12 +177,12 @@ export const LandingPage: React.FC = () => {
           {isOrganizer && (
             <button
               onClick={() => handleAction('dashboard', false)}
-              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-orange-400/40 hover:shadow-lg hover:shadow-orange-500/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
             >
-              <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-400 mb-3.5 group-hover:scale-110 group-hover:bg-orange-500/20 transition-all duration-300">
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-3.5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                 <Compass className="w-5 h-5 rotate-45" />
               </div>
-              <h3 className="text-sm font-bold text-foreground group-hover:text-orange-400 transition-colors duration-200">
+              <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">
                 View Dashboard
               </h3>
               <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
@@ -194,12 +194,12 @@ export const LandingPage: React.FC = () => {
           {features.carpool && (
             <button
               onClick={() => handleAction('carpool')}
-              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-orange-400/40 hover:shadow-lg hover:shadow-orange-500/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-secondary/40 hover:shadow-lg hover:shadow-secondary/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
             >
-              <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-400 mb-3.5 group-hover:scale-110 group-hover:bg-orange-500/20 transition-all duration-300">
+              <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-3.5 group-hover:scale-110 group-hover:bg-secondary/20 transition-all duration-300">
                 <Car className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-bold text-foreground group-hover:text-orange-400 transition-colors duration-200">
+              <h3 className="text-sm font-bold text-foreground group-hover:text-secondary transition-colors duration-200">
                 Carpool Board
               </h3>
               <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">
@@ -211,12 +211,12 @@ export const LandingPage: React.FC = () => {
           {(features.announcements || features.chat) && (
             <button
               onClick={() => handleAction('messages')}
-              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-slate-400/40 hover:shadow-lg hover:shadow-slate-500/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
+              className="flex flex-col items-start p-5 bg-card/40 backdrop-blur-md border border-border rounded-2xl hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-left group shadow-sm w-full"
             >
-              <div className="w-10 h-10 bg-slate-500/10 rounded-xl flex items-center justify-center text-slate-300 mb-3.5 group-hover:scale-110 group-hover:bg-slate-500/20 transition-all duration-300">
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-3.5 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-bold text-foreground group-hover:text-slate-300 transition-colors duration-200">
+              <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">
                 Messages & News
               </h3>
               <p className="text-[11px] text-muted-foreground mt-1.5 leading-normal">

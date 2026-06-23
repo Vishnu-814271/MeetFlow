@@ -75,7 +75,7 @@
 .interactive-card:hover {
   transform: translateY(-4px) scale(1.01);
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  border-color: rgba(59, 130, 246, 0.4); /* subtle primary color border glow */
+  border-color: rgba(249, 115, 22, 0.4); /* primary orange border glow */
 }
 
 /* Subtle Floating Animation */
@@ -89,8 +89,8 @@
 
 /* Slow Glowing Pulse for active elements */
 @keyframes pulse-glow {
-  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
-  50% { opacity: 0.8; box-shadow: 0 0 16px rgba(59, 130, 246, 0.7); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(249, 115, 22, 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 16px rgba(249, 115, 22, 0.7); }
 }
 .animate-glow {
   animation: pulse-glow 2.5s infinite ease-in-out;

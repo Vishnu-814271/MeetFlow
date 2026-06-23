@@ -208,13 +208,13 @@ export const CarpoolPageContent: React.FC = () => {
               <div className="text-[11px] font-semibold text-muted-foreground flex items-center space-x-1.5 mt-0.5">
                 {seatsRemaining > 0 ? (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-emerald-500 font-bold">{seatsRemaining} seats left</span>
+                    <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span className="text-secondary font-bold">{seatsRemaining} seats left</span>
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                    <span className="text-rose-500 font-bold">Full</span>
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    <span className="text-primary font-bold">Full</span>
                   </>
                 )}
               </div>
@@ -224,7 +224,7 @@ export const CarpoolPageContent: React.FC = () => {
           {/* Driver Details */}
           <div className="flex items-center justify-between border-t border-border/40 pt-3 text-xs">
             <div className="flex items-center space-x-2.5">
-              <div className="w-8.5 h-8.5 bg-gradient-to-br from-primary/10 to-indigo-500/10 text-primary border border-primary/20 rounded-full flex items-center justify-center font-bold text-xs uppercase shadow-sm">
+              <div className="w-8.5 h-8.5 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary border border-primary/20 rounded-full flex items-center justify-center font-bold text-xs uppercase shadow-sm">
                 {group.driverName?.charAt(0) || 'D'}
               </div>
               <div>
@@ -239,7 +239,7 @@ export const CarpoolPageContent: React.FC = () => {
                 href={`https://wa.me/${group.driverPhone.replace('+', '')}`}
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 rounded-xl transition-all duration-200 shadow-sm"
+                className="p-2 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-xl transition-all duration-200 shadow-sm"
                 title="Chat with Driver"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -266,7 +266,7 @@ export const CarpoolPageContent: React.FC = () => {
                         href={`https://wa.me/${m.mobileNumber.replace('+', '')}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-emerald-500 hover:text-emerald-600 ml-0.5"
+                        className="text-secondary hover:text-secondary/80 ml-0.5"
                       >
                         <MessageCircle className="w-3 h-3" />
                       </a>
@@ -294,7 +294,7 @@ export const CarpoolPageContent: React.FC = () => {
           ) : role === 'passenger' ? (
             <button
               onClick={() => handleLeave(group.id)}
-              className="px-3.5 py-1.5 bg-rose-500/10 text-rose-600 border border-rose-500/20 hover:bg-rose-500/20 font-bold rounded-xl text-xs transition-colors flex items-center space-x-1.5"
+              className="px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 font-bold rounded-xl text-xs transition-colors flex items-center space-x-1.5"
             >
               <span>Leave Carpool Group</span>
             </button>
@@ -338,7 +338,7 @@ export const CarpoolPageContent: React.FC = () => {
           </h3>
 
           {success && (
-            <div className="text-xs text-emerald-600 bg-emerald-500/10 p-2.5 rounded-lg font-semibold mb-3">
+            <div className="text-xs text-secondary bg-secondary/10 border border-secondary/20 p-2.5 rounded-lg font-semibold mb-3">
               {success}
             </div>
           )}
@@ -483,8 +483,8 @@ export const CarpoolPageContent: React.FC = () => {
 
       {/* Warnings / Notifications */}
       {isUserAlreadyCarpooling && (
-        <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 rounded-2xl flex items-start space-x-2.5 text-xs">
-          <Info className="w-4.5 h-4.5 shrink-0 mt-0.5 text-indigo-500" />
+        <div className="p-4 bg-secondary/10 border border-secondary/20 text-secondary rounded-2xl flex items-start space-x-2.5 text-xs">
+          <Info className="w-4.5 h-4.5 shrink-0 mt-0.5 text-secondary" />
           <div>
             <p className="font-bold text-foreground">You are already coordinating in a carpool!</p>
             <p className="text-[11px] opacity-90 mt-0.5">You can only participate in one active pool at a time. Leave your existing group if you wish to switch.</p>

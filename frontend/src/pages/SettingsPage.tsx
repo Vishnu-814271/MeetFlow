@@ -263,8 +263,8 @@ export const SettingsPageContent: React.FC = () => {
 
       {/* Notifications */}
       {success && (
-        <div className="text-xs text-emerald-600 bg-emerald-500/10 p-3 rounded-xl font-bold flex items-center space-x-1.5">
-          <CheckCircle className="w-4 h-4 text-emerald-500" />
+        <div className="text-xs text-secondary bg-secondary/10 border border-secondary/20 p-3 rounded-xl font-bold flex items-center space-x-1.5">
+          <CheckCircle className="w-4 h-4 text-secondary" />
           <span>{success}</span>
         </div>
       )}

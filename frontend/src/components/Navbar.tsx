@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
       </div>
 
       {/* Desktop Left Sidebar Navbar */}
-      <header className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 bg-slate-950/40 backdrop-blur-xl border-r border-slate-800/40 z-50 flex-col py-6 px-5 justify-between shadow-xl">
+      <header className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 bg-black/60 backdrop-blur-xl border-r border-border z-50 flex-col py-6 px-5 justify-between shadow-xl">
         <div className="space-y-8">
           <NavLink to={`/event/${slug}`} className="flex items-center space-x-2.5 font-black text-2xl text-white tracking-tight">
             <Layers className="w-6 h-6 rotate-45 text-orange-500 animate-pulse-slow" />
@@ -72,8 +72,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
               className={({ isActive }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                    : "text-slate-400 hover:text-white hover:bg-slate-800/25"
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                 }`
               }
             >
@@ -87,8 +87,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/25"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                   }`
                 }
               >
@@ -103,8 +103,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/25"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                   }`
                 }
               >
@@ -119,8 +119,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/25"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                   }`
                 }
               >
@@ -134,8 +134,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
               className={({ isActive }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                    : "text-slate-400 hover:text-white hover:bg-slate-800/25"
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                 }`
               }
             >
@@ -145,8 +145,8 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
           </nav>
         </div>
         
-        <div className="text-[10px] text-slate-500 border-t border-slate-800 pt-4 px-2">
-          <p className="font-semibold text-slate-400">{event?.eventName || "MEET-FLOW Event"}</p>
+        <div className="text-[10px] text-muted-foreground border-t border-border pt-4 px-2">
+          <p className="font-semibold text-foreground/80">{event?.eventName || "MEET-FLOW Event"}</p>
           <p className="mt-0.5">
             {event?.startDatetime ? new Date(event.startDatetime).toLocaleDateString(undefined, {month: 'short', day: 'numeric'}) : "July 11"}
             {event?.endDatetime ? " – " + new Date(event.endDatetime).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'}) : "12, 2026"}
