@@ -431,7 +431,7 @@ export const PortalPage: React.FC = () => {
 
   // Create – step 1
   const [eventName, setEventName] = useState('');
-  const [eventType, setEventType] = useState('ALUMNI');
+  const [eventType, setEventType] = useState('ORGANIZER');
   const [description, setDescription] = useState('');
   const [venueName, setVenueName] = useState('');
   const [venueAddress, setVenueAddress] = useState('');
@@ -442,7 +442,7 @@ export const PortalPage: React.FC = () => {
   // SaaS Dynamic config
   const [aiPrompt, setAiPrompt] = useState('');
   const [featuresConfig, setFeaturesConfig] = useState('{"travel":true,"carpool":true,"announcements":true,"chat":true,"gallery":true,"polls":true,"attendance":true}');
-  const [registrationSchema, setRegistrationSchema] = useState('[{"name":"batchOrGroup","label":"Batch / Group","type":"text","placeholder":"e.g. Batch of 2018","required":false}]');
+  const [registrationSchema, setRegistrationSchema] = useState('[{"name":"affiliation","label":"Affiliation / Company","type":"text","placeholder":"e.g. Stanford University or Google","required":false}]');
   const [rolesSchema, setRolesSchema] = useState('["organizer","participant","driver"]');
   const [dashboardSchema, setDashboardSchema] = useState('["total_registered","confirmed","maybe","not_attending","reached_venue","en_route"]');
   const [aiMessage, setAiMessage] = useState('');
@@ -568,7 +568,7 @@ export const PortalPage: React.FC = () => {
           {/* Badge */}
           <div className="mfp-badge" style={{ marginBottom: 28 }}>
             <Sparkles style={{ width: 12, height: 12 }} />
-            Alumni Network &nbsp;·&nbsp; {year}
+            Event Platform &nbsp;·&nbsp; {year}
           </div>
 
           {/* ── TITLE: visible white text, horizontally rolling ── */}
@@ -592,18 +592,18 @@ export const PortalPage: React.FC = () => {
             fontSize: 14, color: '#94a3b8', fontWeight: 500, lineHeight: 1.7,
             marginBottom: 48, maxWidth: 420, margin: '0 auto 48px'
           }}>
-            Coordinate travel plans, find carpool partners, and connect with fellow alumni — beautifully.
+            Coordinate travel plans, find carpool partners, and connect with fellow participants — beautifully.
           </p>
 
           {/* ── BUTTONS ── */}
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button id="btn-create-meetup" className="mfp-btn mfp-btn-create" onClick={() => open('create')}>
               <Plus style={{ width: 18, height: 18 }} strokeWidth={2.5} />
-              Create Meetup
+              Create Event
             </button>
             <button id="btn-join-meetup" className="mfp-btn mfp-btn-join" onClick={() => open('join')}>
               <LogIn style={{ width: 18, height: 18 }} strokeWidth={2.5} />
-              Join Meetup
+              Join Event
             </button>
           </div>
 
@@ -860,7 +860,7 @@ export const PortalPage: React.FC = () => {
                   <div>
                     <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>Event Created! 🎉</div>
                     <div style={{ fontSize: 12, color: 'rgba(100,116,139,0.8)' }}>
-                      {EVENT_TYPE_CONFIGS[success.eventType]?.inviteHelper || EVENT_TYPE_CONFIGS.ALUMNI.inviteHelper}
+                      {EVENT_TYPE_CONFIGS[success.eventType]?.inviteHelper || EVENT_TYPE_CONFIGS.ORGANIZER.inviteHelper}
                     </div>
                   </div>
                   <div className="mfp-info-card" style={{ textAlign: 'left' }}>

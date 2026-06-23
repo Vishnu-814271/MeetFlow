@@ -29,7 +29,7 @@ export const LandingPage: React.FC = () => {
     return `Wraps by ${timeStr}`;
   }, [event?.endDatetime]);
 
-  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ALUMNI) : EVENT_TYPE_CONFIGS.ALUMNI;
+  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ORGANIZER) : EVENT_TYPE_CONFIGS.ORGANIZER;
   const features = React.useMemo(() => {
     if (!event?.featuresConfig) {
       return { travel: true, carpool: true, announcements: true, chat: true, gallery: true, polls: true, attendance: true };
@@ -255,7 +255,7 @@ export const LandingPage: React.FC = () => {
               <p className="text-xs font-semibold text-muted-foreground">July 11 — 07:00 PM</p>
               <h4 className="text-sm font-bold text-foreground mt-0.5">Cohort Networking Dinner</h4>
               <p className="text-xs text-muted-foreground mt-1 leading-normal">
-                {event?.eventType === 'ALUMNI' || !event?.eventType
+                {event?.eventType === 'ALUMNI'
                   ? 'Open-air social dinner and alumni chapter launch presentations.'
                   : 'Open-air social dinner and collaborative networking sessions.'}
               </p>

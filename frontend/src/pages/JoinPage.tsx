@@ -8,7 +8,7 @@ import confetti from 'canvas-confetti';
 
 export const JoinPageContent: React.FC = () => {
   const { event, eventLoading, setCurrentUser, eventSlug, login } = useAuth();
-  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ALUMNI) : EVENT_TYPE_CONFIGS.ALUMNI;
+  const eventConfig = event?.eventType ? (EVENT_TYPE_CONFIGS[event.eventType] || EVENT_TYPE_CONFIGS.ORGANIZER) : EVENT_TYPE_CONFIGS.ORGANIZER;
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const codeParam = searchParams.get('code') || '';

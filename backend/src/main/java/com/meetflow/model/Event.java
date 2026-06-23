@@ -74,13 +74,13 @@ public class Event {
             id = java.util.UUID.randomUUID().toString();
         }
         if (eventType == null) {
-            eventType = "ALUMNI";
+            eventType = "ORGANIZER";
         }
         if (featuresConfig == null) {
             featuresConfig = "{\"travel\":true,\"carpool\":true,\"announcements\":true,\"chat\":true,\"gallery\":true,\"polls\":true,\"attendance\":true}";
         }
         if (registrationSchema == null) {
-            registrationSchema = "[{\"name\":\"batchOrGroup\",\"label\":\"Batch / Group\",\"type\":\"text\",\"placeholder\":\"e.g. Batch of 2018\",\"required\":false}]";
+            registrationSchema = "[{\"name\":\"affiliation\",\"label\":\"Affiliation / Company\",\"type\":\"text\",\"placeholder\":\"e.g. Stanford University or Google\",\"required\":false}]";
         }
         if (rolesSchema == null) {
             rolesSchema = "[\"organizer\",\"participant\",\"driver\"]";
