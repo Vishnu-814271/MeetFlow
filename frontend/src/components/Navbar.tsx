@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
       <header className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 bg-slate-950/40 backdrop-blur-xl border-r border-slate-800/40 z-50 flex-col py-6 px-5 justify-between shadow-xl">
         <div className="space-y-8">
           <NavLink to={`/event/${slug}`} className="flex items-center space-x-2.5 font-black text-2xl text-white tracking-tight">
-            <Layers className="w-6 h-6 rotate-45 text-sky-400 animate-pulse-slow" />
+            <Layers className="w-6 h-6 rotate-45 text-orange-500 animate-pulse-slow" />
             <span>MEET-FLOW</span>
           </NavLink>
           
@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
               className={({ isActive }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/25 scale-[1.02]" 
+                    ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
                     : "text-slate-400 hover:text-white hover:bg-slate-800/25"
                 }`
               }
@@ -87,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/25 scale-[1.02]" 
+                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
                       : "text-slate-400 hover:text-white hover:bg-slate-800/25"
                   }`
                 }
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/25 scale-[1.02]" 
+                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
                       : "text-slate-400 hover:text-white hover:bg-slate-800/25"
                   }`
                 }
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 className={({ isActive }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/25 scale-[1.02]" 
+                      ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
                       : "text-slate-400 hover:text-white hover:bg-slate-800/25"
                   }`
                 }
@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
               className={({ isActive }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/25 scale-[1.02]" 
+                    ? "bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
                     : "text-slate-400 hover:text-white hover:bg-slate-800/25"
                 }`
               }

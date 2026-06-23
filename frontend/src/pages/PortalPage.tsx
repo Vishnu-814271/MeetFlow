@@ -69,8 +69,8 @@ const CSS = `
   .mfp-grid {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(56, 189, 248, 0.035) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(249, 115, 22, 0.025) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(56, 189, 248, 0.025) 1px, transparent 1px);
     background-size: 40px 40px;
     background-position: center center;
     pointer-events: none;
@@ -173,13 +173,13 @@ const CSS = `
   }
   .mfp-btn:hover { transform: translateY(-4px); }
   .mfp-btn-create {
-    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    background: linear-gradient(135deg, #f97316, #ea580c);
     color: #fff;
-    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.35);
   }
   .mfp-btn-create:hover { 
-    box-shadow: 0 14px 40px rgba(99, 102, 241, 0.65);
-    background: linear-gradient(135deg, #38bdf8, #4f46e5);
+    box-shadow: 0 14px 40px rgba(249, 115, 22, 0.55);
+    background: linear-gradient(135deg, #fb923c, #f97316);
   }
   .mfp-btn-join {
     background: rgba(255, 255, 255, 0.03);
@@ -196,8 +196,8 @@ const CSS = `
 
   /* ── Badge ─────────────────────────────────────────────────────── */
   @keyframes mfp-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(56,189,248,0.4); }
-    50%       { box-shadow: 0 0 0 8px rgba(56,189,248,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(249,115,22,0); }
   }
   .mfp-badge {
     display: inline-flex;
@@ -205,9 +205,9 @@ const CSS = `
     gap: 8px;
     padding: 6px 18px;
     border-radius: 999px;
-    background: rgba(56,189,248,0.1);
-    border: 1px solid rgba(56,189,248,0.35);
-    color: #7dd3fc;
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.35);
+    color: #f97316;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -557,15 +557,15 @@ export const PortalPage: React.FC = () => {
         {/* Decorative orbs */}
         <div className="mfp-orb" style={{
           '--d': '7s', '--dl': '0s', top: '5%', left: '8%', width: 280, height: 280,
-          background: 'radial-gradient(circle,rgba(29,78,216,0.5) 0%,transparent 70%)', filter: 'blur(48px)'
+          background: 'radial-gradient(circle,rgba(249,115,22,0.18) 0%,transparent 70%)', filter: 'blur(48px)'
         } as any} />
         <div className="mfp-orb" style={{
           '--d': '9s', '--dl': '2s', bottom: '8%', right: '6%', width: 340, height: 340,
-          background: 'radial-gradient(circle,rgba(56,189,248,0.28) 0%,transparent 70%)', filter: 'blur(55px)'
+          background: 'radial-gradient(circle,rgba(56,189,248,0.18) 0%,transparent 70%)', filter: 'blur(55px)'
         } as any} />
         <div className="mfp-orb" style={{
           '--d': '11s', '--dl': '1.5s', top: '60%', left: '3%', width: 200, height: 200,
-          background: 'radial-gradient(circle,rgba(99,102,241,0.25) 0%,transparent 70%)', filter: 'blur(36px)'
+          background: 'radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 70%)', filter: 'blur(36px)'
         } as any} />
 
         {/* Stars */}

@@ -39,7 +39,7 @@ const EventLayoutContent: React.FC = () => {
       {/* Layout wrapper to offset content from vertical fixed sidebar on desktop */}
       <div className="flex-1 flex flex-col md:pl-64 transition-all duration-300">
         {/* Main content container with desktop top-margin and mobile bottom-margin */}
-        <main className="flex-1 w-full max-w-md md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1400px] mx-auto px-4 pt-4 md:pt-8 pb-20 md:pb-8 flex flex-col">
+        <main className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-8 pt-6 md:pt-10 pb-24 md:pb-10 flex flex-col">
           <Outlet />
         </main>
       </div>
