@@ -431,6 +431,7 @@ export const PortalPage: React.FC = () => {
 
   // Create – step 1
   const [eventName, setEventName] = useState('');
+  const [createEventCode, setCreateEventCode] = useState('');
   const [eventType, setEventType] = useState('ORGANIZER');
   const [description, setDescription] = useState('');
   const [venueName, setVenueName] = useState('');
@@ -462,7 +463,7 @@ export const PortalPage: React.FC = () => {
     return () => window.removeEventListener('keydown', h);
   }, []);
 
-  const open = (m: ModalMode) => { setModal(m); setStep(1); setError(''); setSuccess(null); setJoinCode(''); };
+  const open = (m: ModalMode) => { setModal(m); setStep(1); setError(''); setSuccess(null); setJoinCode(''); setCreateEventCode(''); };
   const close = () => { setModal('none'); setError(''); setSuccess(null); setStep(1); };
 
   const handleJoin = (e: React.FormEvent) => {
@@ -494,6 +495,7 @@ export const PortalPage: React.FC = () => {
         event: {
           eventName,
           eventType,
+          eventCode: createEventCode,
           description,
           venueName,
           venueAddress,
@@ -737,6 +739,14 @@ export const PortalPage: React.FC = () => {
                         <Lbl>Event Name *</Lbl>
                         <input type="text" value={eventName} onChange={e => setEventName(e.target.value)}
                           placeholder="e.g. Summer Reunion 2026" required autoFocus className="mfp-input" />
+                      </div>
+                      <div>
+                        <Lbl>Event Access Code (Optional)</Lbl>
+                        <input type="text" value={createEventCode} onChange={e => setCreateEventCode(e.target.value.toUpperCase())}
+                          placeholder="e.g. MYEVENT2026 (Leave empty to auto-generate)" className="mfp-input" style={{ letterSpacing: '0.08em' }} />
+                        <p style={{ fontSize: 9, color: 'rgba(100,116,139,0.55)', marginTop: 4 }}>
+                          Choose a custom access code for attendees, or leave empty for a random code.
+                        </p>
                       </div>
                       <div>
                         <Lbl>Event Type *</Lbl>

@@ -82,12 +82,20 @@ public class EventService {
         
         Event event = eventMapper.toEntity(eventDto);
         
-        // Generate automatic code
-        String code;
-        do {
-            code = generateRandomCode(6);
-        } while (eventRepository.findByEventCode(code).isPresent());
-        event.setEventCode(code);
+        // Use custom code if provided, otherwise auto-generate
+        if (event.getEventCode() != null && !event.getEventCode().isBlank()) {
+            String customCode = event.getEventCode().trim().toUpperCase();
+            if (eventRepository.findByEventCode(customCode).isPresent()) {
+                throw new IllegalArgumentException("Event access code already exists. Please choose a different code.");
+            }
+            event.setEventCode(customCode);
+        } else {
+            String code;
+            do {
+                code = generateRandomCode(6);
+            } while (eventRepository.findByEventCode(code).isPresent());
+            event.setEventCode(code);
+        }
         
         // Generate automatic slug
         String slugBase = slugify(event.getEventName());
