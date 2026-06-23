@@ -215,6 +215,7 @@ export const TravelPageContent: React.FC = () => {
                       type="date"
                       value={departureDate}
                       onChange={(e) => setDepartureDate(e.target.value)}
+                      onClick={(e) => e.currentTarget.showPicker()}
                       className="w-full bg-background border border-border rounded-lg p-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
@@ -242,6 +243,7 @@ export const TravelPageContent: React.FC = () => {
                       type="date"
                       value={expectedArrivalDate}
                       onChange={(e) => setExpectedArrivalDate(e.target.value)}
+                      onClick={(e) => e.currentTarget.showPicker()}
                       className="w-full bg-background border border-border rounded-lg p-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
@@ -276,6 +278,7 @@ export const TravelPageContent: React.FC = () => {
                       type="date"
                       value={returnDate}
                       onChange={(e) => setReturnDate(e.target.value)}
+                      onClick={(e) => e.currentTarget.showPicker()}
                       className="w-full bg-background border border-border rounded-lg p-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>

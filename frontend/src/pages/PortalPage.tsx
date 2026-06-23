@@ -798,12 +798,14 @@ export const PortalPage: React.FC = () => {
                         <div>
                           <Lbl>Start *</Lbl>
                           <input type="datetime-local" value={startDt} onChange={e => setStartDt(e.target.value)}
-                            required className="mfp-input" style={{ colorScheme: 'dark', fontSize: 11 }} />
+                            onClick={(e) => e.currentTarget.showPicker()}
+                            required className="mfp-input" style={{ colorScheme: 'light', fontSize: 11 }} />
                         </div>
                         <div>
                           <Lbl>End *</Lbl>
                           <input type="datetime-local" value={endDt} onChange={e => setEndDt(e.target.value)}
-                            required className="mfp-input" style={{ colorScheme: 'dark', fontSize: 11 }} />
+                            onClick={(e) => e.currentTarget.showPicker()}
+                            required className="mfp-input" style={{ colorScheme: 'light', fontSize: 11 }} />
                         </div>
                       </div>
                       <button type="submit" className="mfp-form-btn-primary">
