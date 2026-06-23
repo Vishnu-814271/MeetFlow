@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 248 250 252; /* Slate-50 off-white background */
+    --background: 74 141 209; /* Light blue #4a8dd1 */
     --foreground: 15 23 42; /* Slate-900 dark text */
 
     --card: 255 255 255; /* Pure White card background */

@@ -57,7 +57,7 @@ const CSS = `
   .mfp-root {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%);
+    background: #4a8dd1;
     display: flex;
     flex-direction: column;
     align-items: center;
