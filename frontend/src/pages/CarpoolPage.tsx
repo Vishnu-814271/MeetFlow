@@ -235,15 +235,14 @@ export const CarpoolPageContent: React.FC = () => {
 
             {/* Quick Driver Contact if permission permits */}
             {group.driverPhone && group.driverPhone !== '[Hidden]' && (
-              <a 
-                href={`https://wa.me/${group.driverPhone.replace('+', '')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-xl transition-all duration-200 shadow-sm"
-                title="Chat with Driver"
+              <button 
+                onClick={() => navigate(`/event/${eventSlug}/messages?category=Carpool`)}
+                className="p-2 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-xl transition-all duration-200 shadow-sm flex items-center gap-1.5"
+                title="Coordinate in app message board"
               >
                 <MessageCircle className="w-4 h-4" />
-              </a>
+                <span className="text-[10px] font-bold">Chat</span>
+              </button>
             )}
           </div>
 
@@ -262,14 +261,13 @@ export const CarpoolPageContent: React.FC = () => {
                   >
                     <span className="font-bold text-[11px] text-foreground/80">{m.fullName}</span>
                     {m.mobileNumber && m.mobileNumber !== '[Hidden]' && m.showPhone && (
-                      <a 
-                        href={`https://wa.me/${m.mobileNumber.replace('+', '')}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-secondary hover:text-secondary/80 ml-0.5"
+                      <button 
+                        onClick={() => navigate(`/event/${eventSlug}/messages?category=Carpool`)}
+                        className="text-secondary hover:text-secondary/80 ml-1.5 flex items-center"
+                        title="Coordinate in app message board"
                       >
                         <MessageCircle className="w-3 h-3" />
-                      </a>
+                      </button>
                     )}
                   </div>
                 ))}

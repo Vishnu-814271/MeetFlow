@@ -439,8 +439,8 @@ export const SettingsPageContent: React.FC = () => {
                   className="mt-0.5 rounded text-primary border-border focus:ring-primary"
                 />
                 <div>
-                  <span className="text-xs font-bold text-foreground block">Allow Quick WhatsApp Chat Initiations</span>
-                  <span className="text-[10px] text-muted-foreground">Adds a direct &ldquo;Chat WhatsApp&rdquo; link next to your directory listing.</span>
+                  <span className="text-xs font-bold text-foreground block">Allow Quick In-App Chat Initiations</span>
+                  <span className="text-[10px] text-muted-foreground">Adds a direct &ldquo;Message Chat&rdquo; link next to your directory listing.</span>
                 </div>
               </label>
             </div>

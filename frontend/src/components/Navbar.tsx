@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BarChart2, Car, MessageSquare, User, Layers } from 'lucide-react';
+import { Home, BarChart2, Car, MessageSquare, User, Layers, Map } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface NavbarProps {
@@ -29,38 +29,42 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
     <>
       {/* Mobile Sticky Bottom Navbar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/80 border-t border-border glass z-50 flex items-center justify-around">
-        <NavLink to={`/event/${slug}`} end className={({ isActive }) => isActive ? activeClass : inactiveClass}>
+        <NavLink to={`/event/${slug}`} end className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
           <Home className="w-5 h-5" />
           <span className="text-[10px] mt-0.5">Home</span>
         </NavLink>
         {isOrganizer && (
-          <NavLink to={`/event/${slug}/dashboard`} className={({ isActive }) => isActive ? activeClass : inactiveClass}>
+          <NavLink to={`/event/${slug}/dashboard`} className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
             <BarChart2 className="w-5 h-5" />
             <span className="text-[10px] mt-0.5">Dashboard</span>
           </NavLink>
         )}
         {features.carpool && (
-          <NavLink to={`/event/${slug}/carpool`} className={({ isActive }) => isActive ? activeClass : inactiveClass}>
+          <NavLink to={`/event/${slug}/carpool`} className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
             <Car className="w-5 h-5" />
             <span className="text-[10px] mt-0.5">Carpool</span>
           </NavLink>
         )}
+        <NavLink to={`/event/${slug}/tracker-map`} className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
+          <Map className="w-5 h-5" />
+          <span className="text-[10px] mt-0.5">Map & Tracker</span>
+        </NavLink>
         {(features.announcements || features.chat) && (
-          <NavLink to={`/event/${slug}/messages`} className={({ isActive }) => isActive ? activeClass : inactiveClass}>
+          <NavLink to={`/event/${slug}/messages`} className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
             <MessageSquare className="w-5 h-5" />
             <span className="text-[10px] mt-0.5">Messages</span>
           </NavLink>
         )}
-        <NavLink to={`/event/${slug}/settings`} className={({ isActive }) => isActive ? activeClass : inactiveClass}>
+        <NavLink to={`/event/${slug}/settings`} className={({ isActive }: { isActive: boolean }) => isActive ? activeClass : inactiveClass}>
           <User className="w-5 h-5" />
           <span className="text-[10px] mt-0.5">Profile</span>
         </NavLink>
       </div>
 
       {/* Desktop Left Sidebar Navbar */}
-      <header className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 bg-black/60 backdrop-blur-xl border-r border-border z-50 flex-col py-6 px-5 justify-between shadow-xl">
+      <header className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 bg-white border-r border-border z-50 flex-col py-6 px-5 justify-between shadow-sm">
         <div className="space-y-8">
-          <NavLink to={`/event/${slug}`} className="flex items-center space-x-2.5 font-black text-2xl text-white tracking-tight">
+          <NavLink to={`/event/${slug}`} className="flex items-center space-x-2.5 font-black text-2xl text-foreground tracking-tight">
             <Layers className="w-6 h-6 rotate-45 text-orange-500 animate-pulse-slow" />
             <span>MEET-FLOW</span>
           </NavLink>
@@ -69,11 +73,11 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
             <NavLink 
               to={`/event/${slug}`} 
               end 
-              className={({ isActive }) => 
+              className={({ isActive }: { isActive: boolean }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`
               }
             >
@@ -84,11 +88,11 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
             {isOrganizer && (
               <NavLink 
                 to={`/event/${slug}/dashboard`} 
-                className={({ isActive }) => 
+                className={({ isActive }: { isActive: boolean }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`
                 }
               >
@@ -100,11 +104,11 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
             {features.carpool && (
               <NavLink 
                 to={`/event/${slug}/carpool`} 
-                className={({ isActive }) => 
+                className={({ isActive }: { isActive: boolean }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`
                 }
               >
@@ -112,15 +116,29 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
                 <span>Carpool Board</span>
               </NavLink>
             )}
+
+            <NavLink 
+              to={`/event/${slug}/tracker-map`} 
+              className={({ isActive }: { isActive: boolean }) => 
+                `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                  isActive 
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`
+              }
+            >
+              <Map className="w-4.5 h-4.5" />
+              <span>Map & Tracker</span>
+            </NavLink>
             
             {(features.announcements || features.chat) && (
               <NavLink 
                 to={`/event/${slug}/messages`} 
-                className={({ isActive }) => 
+                className={({ isActive }: { isActive: boolean }) => 
                   `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     isActive 
-                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`
                 }
               >
@@ -131,11 +149,11 @@ export const Navbar: React.FC<NavbarProps> = ({ slug }) => {
             
             <NavLink 
               to={`/event/${slug}/settings`} 
-              className={({ isActive }) => 
+              className={({ isActive }: { isActive: boolean }) => 
                 `flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold shadow-lg shadow-orange-500/25 scale-[1.02]" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`
               }
             >

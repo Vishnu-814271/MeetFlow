@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useMessages, useCreateMessage, useDeleteMessage, useParticipants } from '../services/hooks';
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -13,6 +14,8 @@ import {
 
 export const MessagesPageContent: React.FC = () => {
   const { event, currentUser } = useAuth();
+  const [searchParams] = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'all';
 
   // Queries
   const { data: messages = [], isLoading: loadingMessages } = useMessages(event?.id || '');
@@ -27,9 +30,9 @@ export const MessagesPageContent: React.FC = () => {
   };
 
   // UI state
-  const [selectedCategoryTab, setSelectedCategoryTab] = useState<string>('all');
+  const [selectedCategoryTab, setSelectedCategoryTab] = useState<string>(initialCategory);
   const [messageText, setMessageText] = useState('');
-  const [category, setCategory] = useState('General'); // General, Travel, Carpool, Announcement
+  const [category, setCategory] = useState(initialCategory !== 'all' && ['General', 'Travel', 'Carpool', 'Announcement'].includes(initialCategory) ? initialCategory : 'General'); // General, Travel, Carpool, Announcement
   const [showAnnouncementWarning, setShowAnnouncementWarning] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');

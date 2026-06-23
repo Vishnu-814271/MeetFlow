@@ -3,10 +3,11 @@ import { useAuth } from '../context/AuthContext';
 import { useParticipants, useTravelPlans, useStatusUpdates } from '../services/hooks';
 import type { TravelPlan } from '../services/hooks';
 import { Search, Filter, MapPin, Car, MessageCircle, Mail, ShieldAlert, Compass, UserCheck, Clock } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 export const DirectoryPage: React.FC = () => {
-  const { event } = useAuth();
+  const { event, eventSlug } = useAuth();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   // Queries
@@ -278,15 +279,13 @@ export const DirectoryPage: React.FC = () => {
 
                   <div className="flex space-x-2 shrink-0">
                     {p.allowContact && p.showPhone && p.mobileNumber !== '[Hidden]' ? (
-                      <a
-                        href={`https://wa.me/${p.mobileNumber.replace('+', '')}`}
-                        target="_blank"
-                        rel="noreferrer"
+                      <button
+                        onClick={() => navigate(`/event/${eventSlug}/messages`)}
                         className="px-3 py-1.5 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-lg font-bold text-[11px] hover:shadow-sm active:scale-95 transition-all flex items-center space-x-1"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
-                        <span>Chat WhatsApp</span>
-                      </a>
+                        <span>Message Chat</span>
+                      </button>
                     ) : (
                       <span className="px-3 py-1.5 bg-muted text-muted-foreground/40 rounded-lg text-[11px] cursor-not-allowed flex items-center space-x-1">
                         <MessageCircle className="w-3.5 h-3.5" />

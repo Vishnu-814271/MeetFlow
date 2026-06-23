@@ -64,31 +64,31 @@ export const LandingPage: React.FC = () => {
       {/* Left Column: Event details, user status and actions */}
       <div className="lg:col-span-8 space-y-6">
         {/* Event Header Banner Card */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white rounded-3xl p-6 md:p-8 shadow-xl border border-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-slate-700">
-          <div className="absolute right-0 top-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute left-1/3 bottom-0 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl"></div>
+        <div className="relative overflow-hidden bg-gradient-to-br from-orange-50/85 via-sky-50/85 to-white text-foreground rounded-3xl p-6 md:p-8 shadow-md border border-slate-200/80 transition-all duration-300 hover:shadow-lg hover:border-slate-300">
+          <div className="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute left-1/3 bottom-0 w-24 h-24 bg-secondary/10 rounded-full blur-2xl"></div>
           
-          <span className="inline-block px-3 py-1 bg-primary/20 border border-primary/30 text-primary rounded-full text-xs font-semibold tracking-wide uppercase mb-3 animate-float">
+          <span className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary rounded-full text-xs font-bold tracking-wide uppercase mb-3 animate-float">
             {eventConfig.label}
           </span>
 
-          <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3 bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3 text-slate-900">
             {event?.eventName}
           </h1>
-          <p className="text-slate-300 text-sm md:text-base max-w-xl mb-6 leading-relaxed">
+          <p className="text-slate-600 text-sm md:text-base max-w-xl mb-6 leading-relaxed">
             {event?.description}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-800/80 pt-6 text-sm">
-            <div className="flex items-center space-x-3 text-slate-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-200 pt-6 text-sm">
+            <div className="flex items-center space-x-3 text-slate-800">
               <Calendar className="w-5 h-5 text-primary shrink-0" />
               <div>
                 <p className="font-semibold">{dateRangeStr}</p>
-                <p className="text-xs text-slate-400">{wrapsStr}</p>
+                <p className="text-xs text-slate-500">{wrapsStr}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 text-slate-200">
+            <div className="flex items-center space-x-3 text-slate-800">
               <MapPin className="w-5 h-5 text-primary shrink-0" />
               <div>
                 <p className="font-semibold">{event?.venueName}</p>
@@ -97,7 +97,7 @@ export const LandingPage: React.FC = () => {
                     href={event.venueGoogleMapUrl} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="text-xs text-primary hover:underline hover:text-primary/80 transition-colors"
+                    className="text-xs text-primary hover:underline hover:text-primary/80 transition-colors font-semibold"
                   >
                     View Google Map
                   </a>
@@ -105,11 +105,11 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 text-slate-200">
+            <div className="flex items-center space-x-3 text-slate-800">
               <User className="w-5 h-5 text-primary shrink-0" />
               <div>
                 <p className="font-semibold">Event Initiator</p>
-                <p className="text-xs text-slate-400">{initiatorName}</p>
+                <p className="text-xs text-slate-500">{initiatorName}</p>
               </div>
             </div>
           </div>

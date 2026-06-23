@@ -11,6 +11,7 @@ import MessagesPage from './pages/MessagesPage';
 import SettingsPage from './pages/SettingsPage';
 import ExportsPage from './pages/ExportsPage';
 import PortalPage from './pages/PortalPage';
+import TrackerMapPage from './pages/TrackerMapPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +40,7 @@ function App() {
             <Route path="participants" element={<DirectoryPage />} />
             <Route path="travel" element={<TravelPage />} />
             <Route path="carpool" element={<CarpoolPage />} />
+            <Route path="tracker-map" element={<TrackerMapPage />} />
             <Route path="messages" element={<MessagesPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="export" element={<ExportsPage />} />

@@ -57,7 +57,7 @@ const CSS = `
   .mfp-root {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    background: radial-gradient(circle at 50% 50%, #121218 0%, #050508 100%);
+    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,8 +69,8 @@ const CSS = `
   .mfp-grid {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(249, 115, 22, 0.025) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(56, 189, 248, 0.025) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(249, 115, 22, 0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     background-position: center center;
     pointer-events: none;
@@ -80,16 +80,16 @@ const CSS = `
 
   /* ── Continuous rolling wave — infinite loop ───────────────────── */
   @keyframes mfp-roll-wave {
-    0%    { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
+    0%    { transform: translateY(0)     rotateZ(0deg);   color: #1e293b; }
     15%   { transform: translateY(-22px) rotateZ(-12deg); color: #38bdf8; }
     30%   { transform: translateY(5px)   rotateZ(5deg);   color: #f97316; }
-    45%   { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
-    100%  { transform: translateY(0)     rotateZ(0deg);   color: #ffffff; }
+    45%   { transform: translateY(0)     rotateZ(0deg);   color: #1e293b; }
+    100%  { transform: translateY(0)     rotateZ(0deg);   color: #1e293b; }
   }
 
   .mfp-char {
     display: inline-block;
-    color: #ffffff;
+    color: #1e293b;
     /* duration = wave-speed * num-chars; delay staggers each char through the cycle */
     animation: mfp-roll-wave 2s ease-in-out infinite;
     transform-origin: bottom center;
@@ -147,7 +147,7 @@ const CSS = `
   .mfp-star {
     position: absolute;
     border-radius: 50%;
-    background: #7dd3fc;
+    background: #38bdf8;
     animation: mfp-twinkle var(--d, 3s) ease-in-out infinite;
     animation-delay: var(--dl, 0s);
   }
@@ -175,28 +175,28 @@ const CSS = `
   .mfp-btn-create {
     background: linear-gradient(135deg, #f97316, #ea580c);
     color: #fff;
-    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.35);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.2);
   }
   .mfp-btn-create:hover { 
-    box-shadow: 0 14px 40px rgba(249, 115, 22, 0.55);
+    box-shadow: 0 14px 40px rgba(249, 115, 22, 0.35);
     background: linear-gradient(135deg, #fb923c, #f97316);
   }
   .mfp-btn-join {
-    background: rgba(255, 255, 255, 0.03);
-    color: #38bdf8;
-    border: 2px solid rgba(56, 189, 248, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.8);
+    color: #f97316;
+    border: 2px solid rgba(249, 115, 22, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(12px);
   }
   .mfp-btn-join:hover {
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(56, 189, 248, 0.6);
-    color: #ffffff;
+    background: rgba(249, 115, 22, 0.08);
+    border-color: rgba(249, 115, 22, 0.6);
+    color: #ea580c;
   }
 
   /* ── Badge ─────────────────────────────────────────────────────── */
   @keyframes mfp-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.2); }
     50%       { box-shadow: 0 0 0 8px rgba(249,115,22,0); }
   }
   .mfp-badge {
@@ -205,8 +205,8 @@ const CSS = `
     gap: 8px;
     padding: 6px 18px;
     border-radius: 999px;
-    background: rgba(249,115,22,0.1);
-    border: 1px solid rgba(249,115,22,0.35);
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.25);
     color: #f97316;
     font-size: 11px;
     font-weight: 700;
@@ -224,17 +224,17 @@ const CSS = `
   .mfp-backdrop {
     position: fixed; inset: 0; z-index: 9999;
     display: flex; align-items: center; justify-content: center; padding: 16px;
-    background: rgba(2,6,14,0.88);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(8px);
     animation: mfp-backdrop-in 0.2s ease forwards;
   }
   .mfp-modal-card {
     width: 100%; max-width: 440px;
     border-radius: 24px;
     overflow: auto; max-height: 90vh;
-    background: #121218;
-    border: 1px solid rgba(56,189,248,0.2);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    background: #ffffff;
+    border: 1px solid rgba(226,232,240,1);
+    box-shadow: 0 20px 50px rgba(15,23,42,0.15);
     animation: mfp-modal-in 0.3s cubic-bezier(0.34,1.4,0.64,1) forwards;
     font-family: 'Poppins', sans-serif;
   }
@@ -242,10 +242,10 @@ const CSS = `
   /* ── Inputs ─────────────────────────────────────────────────────── */
   .mfp-input {
     width: 100%;
-    background: rgba(24,24,32,0.8);
-    border: 1.5px solid rgba(56,189,248,0.25);
+    background: #ffffff;
+    border: 1.5px solid rgba(226,232,240,1);
     border-radius: 12px;
-    color: #e2e8f0;
+    color: #0f172a;
     font-size: 13px;
     font-family: 'Poppins', sans-serif;
     padding: 10px 14px;
@@ -255,9 +255,9 @@ const CSS = `
   .mfp-input:focus {
     outline: none;
     border-color: #38bdf8;
-    box-shadow: 0 0 0 3px rgba(56,189,248,0.2);
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
   }
-  .mfp-input option { background: #121218; color: #e2e8f0; }
+  .mfp-input option { background: #ffffff; color: #0f172a; }
 
   /* ── Icon input wrap ─────────────────────────────────────────────── */
   .mfp-iw { position: relative; }
@@ -270,14 +270,14 @@ const CSS = `
   /* ── Step bar ─────────────────────────────────────────────────── */
   .mfp-step { height: 3px; border-radius: 4px; flex: 1; transition: background 0.4s ease; }
   .mfp-step.active { background: linear-gradient(90deg,#f97316,#38bdf8); }
-  .mfp-step.inactive { background: rgba(32,32,46,0.8); }
+  .mfp-step.inactive { background: rgba(226,232,240,0.8); }
 
   /* ── Error banner ─────────────────────────────────────────────── */
   .mfp-error {
     display: flex; align-items: flex-start; gap: 8px;
     padding: 10px 14px; border-radius: 12px; margin-bottom: 14px;
-    background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
-    color: #fca5a5; font-size: 12px; font-weight: 500;
+    background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2);
+    color: #ef4444; font-size: 12px; font-weight: 500;
   }
 
   /* ── Success pop ───────────────────────────────────────────────── */
@@ -291,13 +291,13 @@ const CSS = `
   .mfp-close-btn {
     width: 32px; height: 32px; border-radius: 10px;
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    background: rgba(32,32,46,0.7); color: rgba(148,163,184,0.8);
+    background: rgba(226,232,240,0.7); color: rgba(100,116,139,0.8);
     transition: background 0.2s;
   }
-  .mfp-close-btn:hover { background: rgba(239,68,68,0.2); }
+  .mfp-close-btn:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
 
   /* ── Divider ───────────────────────────────────────────────────── */
-  .mfp-divider { height: 1px; background: rgba(32,32,46,0.8); margin: 12px 0; }
+  .mfp-divider { height: 1px; background: rgba(226,232,240,0.8); margin: 12px 0; }
 
   /* ── Form action buttons ───────────────────────────────────────── */
   .mfp-form-btn-primary {
@@ -305,7 +305,7 @@ const CSS = `
     padding: 12px 20px; border-radius: 14px; border: none; cursor: pointer;
     background: linear-gradient(135deg,#f97316,#ea580c); color: #fff;
     font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700;
-    box-shadow: 0 4px 20px rgba(249,115,22,0.45);
+    box-shadow: 0 4px 20px rgba(249,115,22,0.2);
     transition: opacity 0.2s, transform 0.2s;
   }
   .mfp-form-btn-primary:hover { transform: translateY(-1px); }
@@ -313,16 +313,16 @@ const CSS = `
 
   .mfp-form-btn-back {
     display: flex; align-items: center; gap: 6px;
-    padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(32,32,46,0.8);
-    cursor: pointer; background: rgba(32,32,46,0.7);
-    color: #94a3b8; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
+    padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(226,232,240,0.8);
+    cursor: pointer; background: rgba(241,245,249,0.7);
+    color: #64748b; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
     transition: background 0.2s;
   }
-  .mfp-form-btn-back:hover { background: rgba(32,32,46,0.25); }
+  .mfp-form-btn-back:hover { background: rgba(226,232,240,0.25); }
 
   /* ── Info card ─────────────────────────────────────────────────── */
   .mfp-info-card {
-    background: rgba(18,18,24,0.9); border: 1px solid rgba(32,32,46,0.8);
+    background: rgba(241,245,249,0.8); border: 1px solid rgba(226,232,240,0.8);
     border-radius: 16px; padding: 16px;
   }
 
@@ -330,21 +330,21 @@ const CSS = `
   .mfp-code-display {
     font-family: 'Courier New', monospace;
     font-size: 26px; font-weight: 900;
-    color: #38bdf8; letter-spacing: 0.15em;
+    color: #f97316; letter-spacing: 0.15em;
   }
 
   /* ── Copy row ──────────────────────────────────────────────────── */
   .mfp-copy-row {
     display: flex; align-items: center; gap: 8px;
     padding: 8px 12px; border-radius: 10px;
-    background: rgba(18,18,24,0.8); border: 1px solid rgba(32,32,46,0.8);
+    background: rgba(241,245,249,0.8); border: 1px solid rgba(226,232,240,0.8);
   }
   .mfp-copy-btn {
     flex-shrink: 0; padding: 6px; border-radius: 8px; border: none;
-    cursor: pointer; background: rgba(56,189,248,0.15); color: #38bdf8;
+    cursor: pointer; background: rgba(249,115,22,0.1); color: #f97316;
     display: flex; align-items: center; transition: background 0.2s;
   }
-  .mfp-copy-btn:hover { background: rgba(56,189,248,0.3); }
+  .mfp-copy-btn:hover { background: rgba(249,115,22,0.2); }
 `;
 
 // ─── RollingTitle — continuous infinite wave ──────────────────────────────────
@@ -641,19 +641,19 @@ export const PortalPage: React.FC = () => {
             {/* Header */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '20px 22px 16px', borderBottom: '1px solid rgba(30,58,138,0.3)'
+              padding: '20px 22px 16px', borderBottom: '1px solid rgba(226,232,240,0.8)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{
                   width: 34, height: 34, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'rgba(29,78,216,0.3)', border: '1px solid rgba(56,189,248,0.25)'
+                  background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.2)'
                 }}>
                   {modal === 'join'
-                    ? <KeyRound style={{ width: 16, height: 16, color: '#38bdf8' }} />
-                    : <Plus style={{ width: 16, height: 16, color: '#38bdf8' }} />}
+                    ? <KeyRound style={{ width: 16, height: 16, color: '#f97316' }} />
+                    : <Plus style={{ width: 16, height: 16, color: '#f97316' }} />}
                 </div>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: '#0f172a' }}>
                     {modal === 'join' ? 'Join a Meetup' : 'Create a Meetup'}
                   </div>
                   {modal === 'create' && !success &&
@@ -728,7 +728,7 @@ export const PortalPage: React.FC = () => {
                           placeholder="Describe your event (e.g. 'Create a hackathon for 100 students in Bangalore with schedule, chat, and GitHub fields')"
                           rows={2}
                           className="mfp-input"
-                          style={{ resize: 'none', fontSize: '11px', marginBottom: '8px', background: 'rgba(2,6,14,0.4)' }}
+                          style={{ resize: 'none', fontSize: '11px', marginBottom: '8px', background: '#ffffff' }}
                         />
                         <button
                           type="button"
@@ -886,7 +886,7 @@ export const PortalPage: React.FC = () => {
                     <Sparkles style={{ width: 28, height: 28, color: '#34d399' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>Event Created! 🎉</div>
+                    <div style={{ fontSize: 18, fontWeight: 900, color: '#0f172a', marginBottom: 4 }}>Event Created! 🎉</div>
                     <div style={{ fontSize: 12, color: 'rgba(100,116,139,0.8)' }}>
                       {EVENT_TYPE_CONFIGS[success.eventType]?.inviteHelper || EVENT_TYPE_CONFIGS.ORGANIZER.inviteHelper}
                     </div>
@@ -894,7 +894,7 @@ export const PortalPage: React.FC = () => {
                   <div className="mfp-info-card" style={{ textAlign: 'left' }}>
                     <div style={{ marginBottom: 12 }}>
                       <Lbl>Event</Lbl>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{success.name}</div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{success.name}</div>
                     </div>
                     <div className="mfp-divider" />
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>

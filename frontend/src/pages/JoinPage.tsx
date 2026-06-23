@@ -447,7 +447,7 @@ export const JoinPageContent: React.FC = () => {
                 <div className="flex items-center justify-between border-t border-border/50 pt-3">
                   <div>
                     <label className="text-xs font-bold text-foreground">Allow Contact Requests</label>
-                    <p className="text-[10px] text-muted-foreground">Enables direct whatsapp chat trigger links.</p>
+                    <p className="text-[10px] text-muted-foreground">Enables direct in-app message chat trigger links.</p>
                   </div>
                   <input
                     type="checkbox"

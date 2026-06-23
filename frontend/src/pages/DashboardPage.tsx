@@ -268,15 +268,13 @@ export const DashboardPage: React.FC = () => {
                     
                     <div className="flex items-center space-x-2">
                       {p.showPhone && p.mobileNumber !== '[Hidden]' ? (
-                        <a 
-                          href={`https://wa.me/${p.mobileNumber.replace('+', '')}`} 
-                          target="_blank" 
-                          rel="noreferrer"
+                        <button 
+                          onClick={() => navigate(`/event/${eventSlug}/messages`)}
                           className="p-2 bg-secondary/10 text-secondary rounded-lg hover:bg-secondary/20 transition-all duration-200"
-                          title="Contact on WhatsApp"
+                          title="Message in Community Chat"
                         >
                           <MessageCircle className="w-4 h-4" />
-                        </a>
+                        </button>
                       ) : (
                         <span className="p-2 bg-muted text-muted-foreground/30 rounded-lg cursor-not-allowed">
                           <MessageCircle className="w-4 h-4" />
